@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rowdogg:action:1.0",
+  "title": "Policy-gated local tool proposal",
+  "type": "object",
+  "required": ["action", "arguments"],
+  "properties": {
+    "action": {
+      "enum": [
+        "HTTP_GET",
+        "BASE64_DECODE",
+        "HEX_DECODE",
+        "CIDR_CALCULATE",
+        "PERMISSION_ANALYZE",
+        "VERIFY_FLAG"
+      ]
+    },
+    "arguments": {
+      "type": "object",
+      "description": "Per-tool allowlists and required parameters are enforced by PolicyEngine::validate."
+    },
+    "reason": { "type": "string" },
+    "expected_observation": { "type": "string" }
+  }
+}

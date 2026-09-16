@@ -1,0 +1,3671 @@
+{
+  "description": "100 synthetic deterministic regression fixtures; not a curated CTF corpus or model evaluation.",
+  "seed": 42042,
+  "records": [
+    {
+      "id": "graph-000",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 2.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 3,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              10
+            ],
+            [
+              1,
+              2,
+              8
+            ],
+            [
+              0,
+              2,
+              19
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 2
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 18
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-000",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDAwX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_000_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-000",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.0.13.37/0.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.0.13.37/0"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "0.0.0.0",
+        "broadcast": "255.255.255.255",
+        "total_addresses": 4294967296,
+        "usable_hosts": 4294967294
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-000",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 1301.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "1301"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "-wx-----t"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-001",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 3.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 4,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              9
+            ],
+            [
+              1,
+              2,
+              8
+            ],
+            [
+              2,
+              3,
+              14
+            ],
+            [
+              0,
+              2,
+              13
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 3
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 27
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-001",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDAxX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_001_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-001",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.1.13.37/8.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.1.13.37/8"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.0.0.0",
+        "broadcast": "10.255.255.255",
+        "total_addresses": 16777216,
+        "usable_hosts": 16777214
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-001",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 2452.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "2452"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r--r-s-w-"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-002",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 4.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 5,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              13
+            ],
+            [
+              1,
+              2,
+              10
+            ],
+            [
+              2,
+              3,
+              7
+            ],
+            [
+              3,
+              4,
+              4
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              2,
+              4,
+              4
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 4
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 0
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-002",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDAyX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_002_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-002",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.2.13.37/16.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.2.13.37/16"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.2.0.0",
+        "broadcast": "10.2.255.255",
+        "total_addresses": 65536,
+        "usable_hosts": 65534
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-002",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 4262.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "4262"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "-wSrw--w-"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-003",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 5.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 6,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              13
+            ],
+            [
+              1,
+              2,
+              11
+            ],
+            [
+              2,
+              3,
+              12
+            ],
+            [
+              3,
+              4,
+              11
+            ],
+            [
+              4,
+              5,
+              15
+            ],
+            [
+              0,
+              3,
+              17
+            ],
+            [
+              0,
+              5,
+              10
+            ],
+            [
+              1,
+              4,
+              11
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 5
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 10
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-003",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDAzX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_003_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-003",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.3.13.37/20.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.3.13.37/20"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.3.0.0",
+        "broadcast": "10.3.15.255",
+        "total_addresses": 4096,
+        "usable_hosts": 4094
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-003",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 1470.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "1470"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r--rwx--T"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-004",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 6.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 7,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              3,
+              3
+            ],
+            [
+              3,
+              4,
+              3
+            ],
+            [
+              4,
+              5,
+              14
+            ],
+            [
+              5,
+              6,
+              3
+            ],
+            [
+              0,
+              4,
+              14
+            ],
+            [
+              0,
+              5,
+              18
+            ],
+            [
+              0,
+              6,
+              8
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              1,
+              6,
+              10
+            ],
+            [
+              3,
+              5,
+              17
+            ],
+            [
+              3,
+              6,
+              2
+            ],
+            [
+              4,
+              6,
+              9
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 6
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 7
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-004",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA0X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_004_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-004",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.4.13.37/24.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.4.13.37/24"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.4.13.0",
+        "broadcast": "10.4.13.255",
+        "total_addresses": 256,
+        "usable_hosts": 254
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-004",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 7375.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "7375"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "-wsrwsr-t"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-005",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 7.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 8,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              8
+            ],
+            [
+              1,
+              2,
+              4
+            ],
+            [
+              2,
+              3,
+              12
+            ],
+            [
+              3,
+              4,
+              9
+            ],
+            [
+              4,
+              5,
+              3
+            ],
+            [
+              5,
+              6,
+              15
+            ],
+            [
+              6,
+              7,
+              8
+            ],
+            [
+              0,
+              2,
+              15
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              6,
+              6
+            ],
+            [
+              2,
+              6,
+              17
+            ],
+            [
+              3,
+              6,
+              20
+            ],
+            [
+              4,
+              6,
+              18
+            ],
+            [
+              5,
+              7,
+              5
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 7
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 17
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-005",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA1X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_005_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-005",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.5.13.37/28.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.5.13.37/28"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.5.13.32",
+        "broadcast": "10.5.13.47",
+        "total_addresses": 16,
+        "usable_hosts": 14
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-005",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 5623.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "5623"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rwS-w--wt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-006",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 2.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 3,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              1,
+              2,
+              10
+            ],
+            [
+              0,
+              2,
+              18
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 2
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 15
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-006",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA2X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_006_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-006",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.6.13.37/30.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.6.13.37/30"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.6.13.36",
+        "broadcast": "10.6.13.39",
+        "total_addresses": 4,
+        "usable_hosts": 2
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-006",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 5725.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "5725"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rws-w-r-t"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-007",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 3.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 4,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              10
+            ],
+            [
+              2,
+              3,
+              5
+            ],
+            [
+              0,
+              3,
+              20
+            ],
+            [
+              1,
+              3,
+              19
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 3
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 16
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-007",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA3X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_007_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-007",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.7.13.37/31.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.7.13.37/31"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.7.13.36",
+        "broadcast": "10.7.13.37",
+        "total_addresses": 2,
+        "usable_hosts": 2
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-007",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 5423.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "5423"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r-S-w--wt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-008",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 4.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 5,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              9
+            ],
+            [
+              1,
+              2,
+              11
+            ],
+            [
+              2,
+              3,
+              14
+            ],
+            [
+              3,
+              4,
+              9
+            ],
+            [
+              1,
+              4,
+              3
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 4
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 12
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-008",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA4X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_008_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-008",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.8.13.37/32.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.8.13.37/32"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.8.13.37",
+        "broadcast": "10.8.13.37",
+        "total_addresses": 1,
+        "usable_hosts": 1
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-008",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 4625.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "4625"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rwS-w-r-x"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-009",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 5.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 6,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              14
+            ],
+            [
+              1,
+              2,
+              12
+            ],
+            [
+              2,
+              3,
+              7
+            ],
+            [
+              3,
+              4,
+              11
+            ],
+            [
+              4,
+              5,
+              15
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              3,
+              8
+            ],
+            [
+              2,
+              4,
+              12
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 5
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 15
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-009",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDA5X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_009_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-009",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.9.13.37/0.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.9.13.37/0"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "0.0.0.0",
+        "broadcast": "255.255.255.255",
+        "total_addresses": 4294967296,
+        "usable_hosts": 4294967294
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-009",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 2305.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "2305"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "-wx--Sr-x"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-010",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 6.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 7,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              12
+            ],
+            [
+              2,
+              3,
+              9
+            ],
+            [
+              3,
+              4,
+              9
+            ],
+            [
+              4,
+              5,
+              2
+            ],
+            [
+              5,
+              6,
+              4
+            ],
+            [
+              0,
+              2,
+              16
+            ],
+            [
+              0,
+              3,
+              17
+            ],
+            [
+              0,
+              4,
+              3
+            ],
+            [
+              1,
+              5,
+              5
+            ],
+            [
+              2,
+              5,
+              20
+            ],
+            [
+              3,
+              5,
+              3
+            ],
+            [
+              3,
+              6,
+              16
+            ],
+            [
+              4,
+              6,
+              6
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 6
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 9
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-010",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDEwX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_010_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-010",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.10.13.37/8.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.10.13.37/8"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.0.0.0",
+        "broadcast": "10.255.255.255",
+        "total_addresses": 16777216,
+        "usable_hosts": 16777214
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-010",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 1503.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "1503"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r-x----wt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-011",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 7.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 8,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              6
+            ],
+            [
+              1,
+              2,
+              14
+            ],
+            [
+              2,
+              3,
+              2
+            ],
+            [
+              3,
+              4,
+              1
+            ],
+            [
+              4,
+              5,
+              12
+            ],
+            [
+              5,
+              6,
+              12
+            ],
+            [
+              6,
+              7,
+              10
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              5,
+              10
+            ],
+            [
+              0,
+              6,
+              5
+            ],
+            [
+              1,
+              4,
+              7
+            ],
+            [
+              1,
+              7,
+              19
+            ],
+            [
+              2,
+              4,
+              18
+            ],
+            [
+              2,
+              5,
+              18
+            ],
+            [
+              2,
+              6,
+              13
+            ],
+            [
+              2,
+              7,
+              1
+            ],
+            [
+              3,
+              6,
+              10
+            ],
+            [
+              4,
+              6,
+              20
+            ],
+            [
+              4,
+              7,
+              18
+            ],
+            [
+              5,
+              7,
+              4
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 7
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 14
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-011",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDExX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_011_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-011",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.11.13.37/16.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.11.13.37/16"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.11.0.0",
+        "broadcast": "10.11.255.255",
+        "total_addresses": 65536,
+        "usable_hosts": 65534
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-011",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 0423.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "0423"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r---w--wx"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-012",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 2.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 3,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 2
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 2
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-012",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDEyX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_012_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-012",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.12.13.37/20.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.12.13.37/20"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.12.0.0",
+        "broadcast": "10.12.15.255",
+        "total_addresses": 4096,
+        "usable_hosts": 4094
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-012",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 7117.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "7117"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "--s--srwt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-013",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 3.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 4,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              9
+            ],
+            [
+              1,
+              2,
+              6
+            ],
+            [
+              2,
+              3,
+              3
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 3
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 18
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-013",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDEzX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_013_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-013",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.13.13.37/24.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.13.13.37/24"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.13.13.0",
+        "broadcast": "10.13.13.255",
+        "total_addresses": 256,
+        "usable_hosts": 254
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-013",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 1067.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "1067"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "---rw-rwt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-014",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 4.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 5,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              1,
+              2,
+              7
+            ],
+            [
+              2,
+              3,
+              1
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 4
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 8
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-014",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE0X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_014_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-014",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.14.13.37/28.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.14.13.37/28"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.14.13.32",
+        "broadcast": "10.14.13.47",
+        "total_addresses": 16,
+        "usable_hosts": 14
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-014",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 5700.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "5700"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rws-----T"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-015",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 5.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 6,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              10
+            ],
+            [
+              1,
+              2,
+              10
+            ],
+            [
+              2,
+              3,
+              2
+            ],
+            [
+              3,
+              4,
+              7
+            ],
+            [
+              4,
+              5,
+              11
+            ],
+            [
+              1,
+              4,
+              17
+            ],
+            [
+              1,
+              5,
+              17
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 5
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 27
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-015",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE1X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_015_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-015",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.15.13.37/30.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.15.13.37/30"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.15.13.36",
+        "broadcast": "10.15.13.39",
+        "total_addresses": 4,
+        "usable_hosts": 2
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-015",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 2544.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "2544"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r-xr-Sr--"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-016",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 6.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 7,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              6
+            ],
+            [
+              1,
+              2,
+              9
+            ],
+            [
+              2,
+              3,
+              12
+            ],
+            [
+              3,
+              4,
+              4
+            ],
+            [
+              4,
+              5,
+              11
+            ],
+            [
+              5,
+              6,
+              4
+            ],
+            [
+              0,
+              3,
+              16
+            ],
+            [
+              0,
+              5,
+              20
+            ],
+            [
+              0,
+              6,
+              17
+            ],
+            [
+              2,
+              4,
+              9
+            ],
+            [
+              2,
+              5,
+              12
+            ],
+            [
+              2,
+              6,
+              8
+            ],
+            [
+              3,
+              5,
+              6
+            ],
+            [
+              4,
+              6,
+              16
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 6
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 17
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-016",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE2X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_016_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-016",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.16.13.37/31.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.16.13.37/31"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.16.13.36",
+        "broadcast": "10.16.13.37",
+        "total_addresses": 2,
+        "usable_hosts": 2
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-016",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 0007.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "0007"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "------rwx"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-017",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 7.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 8,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              2,
+              3,
+              2
+            ],
+            [
+              3,
+              4,
+              6
+            ],
+            [
+              4,
+              5,
+              11
+            ],
+            [
+              5,
+              6,
+              12
+            ],
+            [
+              6,
+              7,
+              6
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              0,
+              4,
+              10
+            ],
+            [
+              0,
+              6,
+              17
+            ],
+            [
+              1,
+              4,
+              13
+            ],
+            [
+              1,
+              5,
+              9
+            ],
+            [
+              2,
+              4,
+              7
+            ],
+            [
+              2,
+              5,
+              20
+            ],
+            [
+              2,
+              7,
+              2
+            ],
+            [
+              3,
+              5,
+              12
+            ],
+            [
+              4,
+              6,
+              17
+            ],
+            [
+              4,
+              7,
+              0
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 7
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 5
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-017",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE3X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_017_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-017",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.17.13.37/32.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.17.13.37/32"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.17.13.37",
+        "broadcast": "10.17.13.37",
+        "total_addresses": 1,
+        "usable_hosts": 1
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-017",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 0646.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "0646"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rw-r--rw-"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-018",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 2.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 3,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 2
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 6
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-018",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE4X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_018_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-018",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.18.13.37/0.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.18.13.37/0"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "0.0.0.0",
+        "broadcast": "255.255.255.255",
+        "total_addresses": 4294967296,
+        "usable_hosts": 4294967294
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-018",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 7160.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "7160"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "--srwS--T"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-019",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 3.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 4,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              1,
+              2,
+              4
+            ],
+            [
+              2,
+              3,
+              9
+            ],
+            [
+              1,
+              3,
+              12
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 3
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 16
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-019",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDE5X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_019_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-019",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.19.13.37/8.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.19.13.37/8"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.0.0.0",
+        "broadcast": "10.255.255.255",
+        "total_addresses": 16777216,
+        "usable_hosts": 16777214
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-019",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 6742.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "6742"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rwsr-S-w-"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-020",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 4.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 5,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              10
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              2,
+              3,
+              11
+            ],
+            [
+              3,
+              4,
+              13
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 4
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 39
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-020",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDIwX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_020_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-020",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.20.13.37/16.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.20.13.37/16"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.20.0.0",
+        "broadcast": "10.20.255.255",
+        "total_addresses": 65536,
+        "usable_hosts": 65534
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-020",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 3633.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "3633"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rw--ws-wt"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-021",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 5.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 6,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              1,
+              2,
+              9
+            ],
+            [
+              2,
+              3,
+              5
+            ],
+            [
+              3,
+              4,
+              3
+            ],
+            [
+              4,
+              5,
+              1
+            ],
+            [
+              0,
+              2,
+              9
+            ],
+            [
+              0,
+              3,
+              10
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              2,
+              4,
+              17
+            ],
+            [
+              2,
+              5,
+              16
+            ],
+            [
+              3,
+              5,
+              19
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 5
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 6
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-021",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDIxX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_021_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-021",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.21.13.37/20.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.21.13.37/20"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.21.0.0",
+        "broadcast": "10.21.15.255",
+        "total_addresses": 4096,
+        "usable_hosts": 4094
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-021",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 2653.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "2653"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rw-r-s-wx"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-022",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 6.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 7,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              6
+            ],
+            [
+              2,
+              3,
+              8
+            ],
+            [
+              3,
+              4,
+              15
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              9
+            ],
+            [
+              0,
+              3,
+              11
+            ],
+            [
+              0,
+              5,
+              19
+            ],
+            [
+              0,
+              6,
+              10
+            ],
+            [
+              1,
+              4,
+              14
+            ],
+            [
+              1,
+              5,
+              14
+            ],
+            [
+              2,
+              6,
+              6
+            ],
+            [
+              3,
+              5,
+              13
+            ],
+            [
+              4,
+              6,
+              4
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 6
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 10
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-022",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDIyX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_022_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-022",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.22.13.37/24.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.22.13.37/24"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.22.13.0",
+        "broadcast": "10.22.13.255",
+        "total_addresses": 256,
+        "usable_hosts": 254
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-022",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 1760.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "1760"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "rwxrw---T"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-023",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 7.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 8,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              2,
+              3,
+              6
+            ],
+            [
+              3,
+              4,
+              12
+            ],
+            [
+              4,
+              5,
+              12
+            ],
+            [
+              5,
+              6,
+              7
+            ],
+            [
+              6,
+              7,
+              1
+            ],
+            [
+              0,
+              2,
+              17
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              6,
+              5
+            ],
+            [
+              1,
+              3,
+              9
+            ],
+            [
+              1,
+              6,
+              18
+            ],
+            [
+              2,
+              5,
+              5
+            ],
+            [
+              3,
+              6,
+              12
+            ],
+            [
+              4,
+              6,
+              7
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 7
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 6
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-023",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDIzX2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_023_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-023",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.23.13.37/28.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.23.13.37/28"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.23.13.32",
+        "broadcast": "10.23.13.47",
+        "total_addresses": 16,
+        "usable_hosts": 14
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-023",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 7532.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "7532"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "r-s-ws-wT"
+      },
+      "reference": "Python stat.filemode"
+    },
+    {
+      "id": "graph-024",
+      "category": "graph",
+      "difficulty": "synthetic-small",
+      "question": "Find the minimum cost from 0 to 2.",
+      "spec": {
+        "version": "1.0",
+        "category": "graph",
+        "problem": {
+          "type": "shortest_path"
+        },
+        "input": {
+          "nodes": 3,
+          "directed": true,
+          "edges": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              8
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "parameters": {
+          "source": 0,
+          "target": 2
+        },
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "cost": 1
+      },
+      "reference": "Python Bellman-Ford"
+    },
+    {
+      "id": "encoding-024",
+      "category": "crypto",
+      "difficulty": "synthetic-small",
+      "question": "Decode the Base64 signal.",
+      "spec": {
+        "version": "1.0",
+        "category": "crypto",
+        "problem": {
+          "type": "base64_decode"
+        },
+        "input": {
+          "text": "Q1RGe2ZpeHR1cmVfMDI0X2V2aWRlbmNlfQ=="
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "text": "CTF{fixture_024_evidence}"
+      },
+      "reference": "Python base64"
+    },
+    {
+      "id": "network-024",
+      "category": "network",
+      "difficulty": "synthetic-boundary",
+      "question": "Calculate the subnet for 10.24.13.37/30.",
+      "spec": {
+        "version": "1.0",
+        "category": "network",
+        "problem": {
+          "type": "cidr_subnet"
+        },
+        "input": {
+          "cidr": "10.24.13.37/30"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "network": "10.24.13.36",
+        "broadcast": "10.24.13.39",
+        "total_addresses": 4,
+        "usable_hosts": 2
+      },
+      "reference": "Python ipaddress"
+    },
+    {
+      "id": "linux-024",
+      "category": "linux",
+      "difficulty": "synthetic-boundary",
+      "question": "Analyze Unix mode 2255.",
+      "spec": {
+        "version": "1.0",
+        "category": "linux",
+        "problem": {
+          "type": "permission_analyze"
+        },
+        "input": {
+          "mode": "2255"
+        },
+        "parameters": {},
+        "output": {
+          "type": "result"
+        }
+      },
+      "expected": {
+        "symbolic": "-w-r-sr-x"
+      },
+      "reference": "Python stat.filemode"
+    }
+  ]
+}

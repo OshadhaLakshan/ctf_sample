@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rowdogg:ctf-ir:1.0",
+  "title": "R0WD0GG CTF Intermediate Representation",
+  "description": "Wire contract. C++ also enforces problem-specific types, limits, and semantics.",
+  "type": "object",
+  "required": ["version", "category", "problem", "input", "parameters", "output"],
+  "properties": {
+    "version": { "const": "1.0" },
+    "category": { "enum": ["graph", "crypto", "network", "linux", "web", "algorithm"] },
+    "problem": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": [
+            "shortest_path",
+            "dijkstra",
+            "bellman_ford",
+            "bfs",
+            "dfs",
+            "floyd_warshall",
+            "mst",
+            "topological_sort",
+            "scc",
+            "knapsack",
+            "base64_decode",
+            "base64_encode",
+            "hex_decode",
+            "hex_encode",
+            "xor_decrypt",
+            "rot13",
+            "caesar",
+            "hash_identify",
+            "cidr_subnet",
+            "permission_analyze",
+            "header_analysis"
+          ]
+        }
+      }
+    },
+    "input": { "type": "object" },
+    "parameters": { "type": "object" },
+    "output": {
+      "type": "object",
+      "required": ["type"],
+      "properties": { "type": { "type": "string" } }
+    }
+  }
+}
