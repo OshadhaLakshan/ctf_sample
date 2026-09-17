@@ -15,8 +15,8 @@ export async function api<T>(path: string, payload?: unknown, signal?: AbortSign
   } catch {
     throw new Error('C++ engine is unreachable. Start the backend on port 8080.');
   }
-  if (!response.ok || data.error)
-    throw new Error(data.error || `Request failed (${response.status})`);
+  // A successful run snapshot may contain its own execution error; render it instead of hiding the run.
+  if (!response.ok) throw new Error(data.error || `Request failed (${response.status})`);
   return data;
 }
 

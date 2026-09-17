@@ -67,8 +67,22 @@ async function main() {
     assert.ok((await page.locator('tbody').innerText()).includes('Ghost route'));
     checks.push('History search and verified-check filter');
     await page.getByRole('button', { name: 'System', exact: true }).click();
-    assert.equal(await page.locator('.capabilities>span').count(), 21);
+    assert.equal(await page.locator('.capabilities>span').count(), 22);
     checks.push('Actual solver registry and topology');
+    if ((await (await page.request.get(new URL('/api/v1/health', page.url()).href)).json()).model_available) {
+      await page.getByRole('button', { name: 'Test inference', exact: true }).click();
+      await page.locator('.connection-feedback.success').waitFor({ timeout: 190000 });
+      await page.getByRole('button', { name: 'Overview', exact: true }).click();
+      await page.getByLabel('CTF PROBLEM STATEMENT').fill('Decode the Base64 string SGVsbG8= and return the plaintext.');
+      await page.getByRole('button', { name: 'Interpret & solve' }).click();
+      await page.locator('.solution-explanation strong').filter({ hasText: 'Question cross-check passed' }).waitFor({ timeout: 190000 });
+      assert.equal(await page.locator('.answer').textContent(), 'Hello');
+      await page.locator('.full-result summary').click();
+      assert.ok((await page.locator('.full-result pre').innerText()).includes('base64_decode'));
+      assert.match(await page.locator('body').evaluate(element => getComputedStyle(element).cursor), /cursor.svg/);
+      checks.push('Actual Gemma diagnostic, pasted challenge, answer cross-check, inspectable result, custom cursor');
+      await page.screenshot({ path: path.join(root, 'tmp', 'gemma-browser-result.png'), fullPage: true });
+    }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole('button', { name: 'Toggle navigation' }).click();
     await page.getByRole('button', { name: 'Overview', exact: true }).click();

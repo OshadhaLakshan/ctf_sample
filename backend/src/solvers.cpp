@@ -281,11 +281,11 @@ std::string timestamp() {
 
 std::vector<std::string> capabilities() {
     return {
-        "shortest_path",  "dijkstra",      "bellman_ford",     "bfs",         "dfs",
-        "floyd_warshall", "mst",           "topological_sort", "scc",         "knapsack",
-        "base64_decode",  "base64_encode", "hex_decode",       "hex_encode",  "xor_decrypt",
-        "rot13",          "caesar",        "hash_identify",    "cidr_subnet", "permission_analyze",
-        "header_analysis"};
+        "shortest_path",   "dijkstra",      "bellman_ford",     "bfs",         "dfs",
+        "floyd_warshall",  "mst",           "topological_sort", "scc",         "knapsack",
+        "base64_decode",   "base64_encode", "hex_decode",       "hex_encode",  "xor_decrypt",
+        "rot13",           "caesar",        "hash_identify",    "cidr_subnet", "permission_analyze",
+        "header_analysis", "pipeline"};
 }
 
 std::string base64Encode(const std::string &input) {
@@ -352,11 +352,42 @@ void validateSpec(const Json &spec) {
         "shortest_path",  "dijkstra", "bellman_ford",     "bfs", "dfs",
         "floyd_warshall", "mst",      "topological_sort", "scc"};
     const auto &input = spec["input"];
+    if (type == "pipeline") {
+        require(category == "multi_stage", "Pipeline requires category multi_stage");
+        require(input.size() == 1 && input.contains("steps"), "Pipeline input must contain only steps; put all operations inside that array");
+        require(input.contains("steps") && input["steps"].is_array() && !input["steps"].empty() &&
+                    input["steps"].size() <= 8,
+                "Pipeline requires 1..8 steps");
+        size_t index = 0; // Step index prevents unresolved input on the first operation.
+        for (const auto &step : input["steps"]) {
+            require(step.is_object() && step.contains("problem") && step["problem"].is_object() &&
+                        step["problem"].value("type", "") != "pipeline",
+                    "Nested pipelines are not supported");
+            validateSpec(step);
+            if (step["input"].contains("text") && step["input"]["text"] == "$previous")
+                require(index > 0, "First step needs explicit input text");
+            ++index;
+        }
+        return;
+    }
     if (graphTypes.contains(type)) {
         require(category == "graph", "Graph problem requires category graph");
         const int count =
             int(integer(input.at("nodes"), 1, 128,
                         "nodes")); // Bounded vertex count keeps verification predictable.
+        if (input.contains("labels")) {
+            require(input["labels"].is_array() && input["labels"].size() == size_t(count),
+                    "labels must match node count");
+            std::set<std::string>
+                unique; // Preserve original graph names without ambiguous mappings.
+            for (const auto &label : input["labels"]) {
+                require(label.is_string() && !label.get<std::string>().empty() &&
+                            label.get<std::string>().size() <= 64,
+                        "Node labels must be 1..64 bytes");
+                unique.insert(label.get<std::string>());
+            }
+            require(unique.size() == size_t(count), "Node labels must be unique");
+        }
         require(input.contains("edges") && input["edges"].is_array() &&
                     input["edges"].size() <= 4096,
                 "edges must be an array of at most 4096 edges");
@@ -416,6 +447,26 @@ Json solve(const Json &spec) {
     // Validated dispatch key and input object shared by the solver branches.
     const std::string type = spec["problem"]["type"];
     const auto &input = spec["input"];
+    if (type == "pipeline") {
+        Json previous = Json::object(),
+             steps = Json::array(); // Actual step outputs and their independent checks.
+        for (auto step : input["steps"]) {
+            if (step["input"].contains("text") && step["input"]["text"] == "$previous") {
+                require(previous.contains("text") && previous["text"].is_string(),
+                        "Previous step did not produce UTF-8 text; specify a compatible operation");
+                step["input"]["text"] = previous["text"];
+            }
+            const auto output =
+                solve(step); // Each resolved spec passes the same authoritative validation.
+            const auto proof = verify(step, output);
+            require(proof["passed"].get<bool>(), "Pipeline step verification failed");
+            steps.push_back({{"spec", step}, {"result", output}, {"verification", proof}});
+            previous = output;
+        }
+        previous["steps"] = steps;
+        previous["algorithm"] = "verified_pipeline";
+        return previous;
+    }
     if (type == "shortest_path" || type == "dijkstra" || type == "bellman_ford" || type == "bfs")
         return shortestPath(spec);
     if (type == "mst")
@@ -606,8 +657,32 @@ Json verify(const Json &spec, const Json &result) {
     const std::string type = spec["problem"]["type"]; // Selects the verification strategy.
     check("schema_valid", true);
     try {
-        if (type == "shortest_path" || type == "dijkstra" || type == "bfs" ||
-            type == "bellman_ford") {
+        if (type == "pipeline") {
+            const auto &records = result.at(
+                "steps"); // Claimed intermediate results, checked against the original plan.
+            require(records.is_array() && records.size() == spec["input"]["steps"].size(),
+                    "Pipeline step count mismatch");
+            Json previous =
+                Json::object(); // Previous verified output used to reconstruct dependent inputs.
+            for (size_t index = 0; index < records.size(); ++index) {
+                Json resolved = spec["input"]["steps"][index];
+                if (resolved["input"].contains("text") && resolved["input"]["text"] == "$previous")
+                    resolved["input"]["text"] = previous.at("text");
+                check("step_" + std::to_string(index + 1) + "_input",
+                      records[index].at("spec") == resolved);
+                const auto checked = verify(
+                    resolved, records[index].at(
+                                  "result")); // Recompute checks rather than trusting saved flags.
+                check("step_" + std::to_string(index + 1) + "_verified", checked["passed"]);
+                check("step_" + std::to_string(index + 1) + "_check_record",
+                      checked == records[index].at("verification"));
+                previous = records[index].at("result");
+            }
+            previous["steps"] = records;
+            previous["algorithm"] = "verified_pipeline";
+            check("final_output_matches_chain", previous == result);
+        } else if (type == "shortest_path" || type == "dijkstra" || type == "bfs" ||
+                   type == "bellman_ford") {
             Json oracleSpec = spec; // BFS optimality is measured in unit edges.
             if (type == "bfs")
                 for (auto &edge : oracleSpec["input"]["edges"])
@@ -737,7 +812,8 @@ Json verify(const Json &spec, const Json &result) {
             {"method", type == "shortest_path" || type == "dijkstra" || type == "bellman_ford" ||
                                type == "bfs"
                            ? "Independent Floyd-Warshall oracle"
-                       : type == "mst" ? "Independent Prim oracle + structural checks"
+                       : type == "mst"      ? "Independent Prim oracle + structural checks"
+                       : type == "pipeline" ? "Per-step verification + chain provenance"
                        : spec["category"] == "crypto" && type != "hash_identify"
                            ? "Inverse transformation"
                            : "Deterministic recomputation"}};

@@ -175,6 +175,30 @@ int main() {
                                         {"reason", Json::object()}});
             },
             "Reject malformed planner display fields");
+        const auto chain =
+            spec("multi_stage", "pipeline",
+                 {{"steps",
+                   Json::array({spec("crypto", "base64_decode", {{"text", "NDg2NTZjNmM2Zg=="}}),
+                                spec("crypto", "hex_decode",
+                                     {{"text", "$previous"}})})}}); // Base64 -> hex -> Hello,
+                                                                    // preserving input provenance.
+        auto chainResult =
+            solve(chain); // Intermediate results are exposed for audit and tamper testing.
+        expect(chainResult["text"] == "Hello" && chainResult["steps"].size() == 2,
+               "Multi-stage decoding result");
+        expect(verify(chain, chainResult)["passed"], "Every pipeline step independently checked");
+        chainResult["steps"][0]["result"]["text"] = "666f72676564";
+        expect(!verify(chain, chainResult)["passed"].get<bool>(),
+               "Reject forged intermediate pipeline bytes");
+        chainResult = solve(chain);
+        chainResult["text"] = "forged";
+        expect(!verify(chain, chainResult)["passed"].get<bool>(),
+               "Reject changed final pipeline answer");
+        auto badChain = chain; // Invalid plans must be rejected before execution.
+        badChain["input"]["steps"][0]["input"]["text"] = "$previous";
+        rejects([&] { solve(badChain); }, "Reject missing first-step input");
+        badChain["input"]["steps"][0] = chain;
+        rejects([&] { solve(badChain); }, "Reject nested unbounded pipelines");
         // Deterministic randomized graphs compare the solver with an independent all-pairs oracle.
         for (int seed = 1; seed <= 50; ++seed) {
             Json edges = Json::array(); // Small bounded graphs cover zero weights, parallel routes,

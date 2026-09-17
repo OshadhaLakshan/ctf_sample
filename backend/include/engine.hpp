@@ -11,11 +11,26 @@
 namespace rowdogg {
 // HTTP adapter for the local llama.cpp OpenAI-compatible endpoint.
 class GemmaClient {
+    mutable std::mutex
+        configMutex; // Guards runtime connection settings across API and worker threads.
+    Json settings;   // Non-secret connection configuration; API keys stay in the environment.
+    std::filesystem::path settingsPath; // Durable, operator-owned configuration file.
   public:
+    // Loads persisted settings, with environment overrides for unattended deployments.
+    explicit GemmaClient(std::filesystem::path path = "data/model.json");
+    // Returns a consistent copy of the current non-secret settings.
+    Json config() const;
+    // Validates and persists local-server settings without granting tool access to that server.
+    Json configure(const Json &value);
+    // Diagnoses transport, loading, authorization, endpoint, and model selection errors.
+    Json diagnose() const;
+    // Exercises actual JSON generation instead of treating HTTP health as inference success.
+    Json test() const;
     // Reports live server health with a short timeout.
     bool available() const;
     // Requests one structured JSON response from the specified model role.
-    Json request(const std::string &role, const Json &context) const;
+    Json request(const std::string &role, const Json &context,
+                 const std::atomic<bool> *cancelled = nullptr) const;
 };
 
 // Validates tool proposals independently from model instructions or challenge text.
@@ -72,5 +87,19 @@ class CTFEngine {
     Json reverify(const std::string &id);
     // Returns actual service capabilities and model availability.
     Json health() const;
+    // Exposes model connection configuration and diagnostics to the local UI.
+    Json model() const;
+    // Saves connection settings supplied by the local operator.
+    Json configureModel(const Json &value);
+    // Tests schema-constrained model inference with a harmless diagnostic request.
+    Json testModel() const;
+};
+
+// Distinguishes incomplete/unsupported challenge data from a transport or engine failure.
+class NeedsInput : public std::runtime_error {
+  public:
+    Json details; // Structured questions displayed in the challenge continuation form.
+    explicit NeedsInput(const Json &questions)
+        : std::runtime_error("Challenge needs more information"), details(questions) {}
 };
 } // namespace rowdogg

@@ -15,7 +15,7 @@
   --amber: #e6b975;
   --red: #ef8383;
   --mono: 'Cascadia Code', 'Consolas', monospace;
-  font-size: 14px;
+  font-size: 19px;
 }
 * {
   box-sizing: border-box;
@@ -85,7 +85,7 @@ h3 {
 }
 pre {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 17px;
   line-height: 1.8;
   white-space: pre-wrap;
   word-break: break-word;
@@ -122,12 +122,12 @@ option {
   font-family: var(--mono);
 }
 .micro {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.65px;
   color: var(--muted);
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 1.7px;
   color: var(--lime);
   text-transform: uppercase;
@@ -183,7 +183,7 @@ option {
   align-items: center;
   justify-content: center;
   gap: 9px;
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 650;
   white-space: nowrap;
   border-radius: 4px;
@@ -204,7 +204,7 @@ option {
 }
 .primary.compact {
   padding: 9px 12px;
-  font-size: 11px;
+  font-size: 16px;
 }
 .secondary {
   border: 1px solid #343c3d;
@@ -226,7 +226,7 @@ option {
   gap: 7px;
   align-items: center;
   color: #b3bdbe;
-  font-size: 11px;
+  font-size: 16px;
   padding: 4px 0;
 }
 .text-button:hover {
@@ -252,7 +252,7 @@ option {
   align-items: center;
   gap: 11px;
   padding: 0 8px;
-  font-size: 21px;
+  font-size: 26px;
   font-weight: 850;
   letter-spacing: 1.2px;
 }
@@ -271,14 +271,14 @@ option {
   transform: skew(-8deg);
 }
 .brand-symbol > span {
-  font-size: 22px;
+  font-size: 27px;
   position: absolute;
   left: 19px;
   top: 0;
 }
 .brand small {
   display: block;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   letter-spacing: 1.1px;
   margin-top: 5px;
   color: #8d9797;
@@ -301,12 +301,12 @@ option {
   display: flex;
 }
 .workspace-label > div {
-  font-size: 11px;
+  font-size: 16px;
   flex: 1;
 }
 .workspace-label small {
   display: block;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #818b8c;
   letter-spacing: 0.5px;
   margin-top: 5px;
@@ -315,7 +315,7 @@ option {
   color: #616f6e;
 }
 .nav-heading {
-  font: 9px var(--mono);
+  font: 14px var(--mono);
   letter-spacing: 1.6px;
   color: #657172;
   margin: 0 11px 13px;
@@ -329,7 +329,7 @@ option {
   margin-bottom: 6px;
   border-radius: 5px;
   color: #929e9d;
-  font-size: 12px;
+  font-size: 17px;
   text-align: left;
   position: relative;
   border: 1px solid transparent;
@@ -356,7 +356,7 @@ option {
   flex: 1;
 }
 .nav-item b {
-  font: 10px var(--mono);
+  font: 15px var(--mono);
   background: #282f23;
   padding: 2px 4px;
 }
@@ -376,7 +376,7 @@ option {
   align-items: center;
   padding: 10px 12px;
   color: #8c9898;
-  font-size: 10px;
+  font-size: 14px;
 }
 .stack-item svg {
   color: #63706e;
@@ -397,18 +397,18 @@ option {
 }
 .local-card strong {
   display: block;
-  font-size: 14px;
+  font-size: 19px;
   line-height: 1.45;
   font-weight: 550;
 }
 .local-card p {
   color: #859182;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.8;
   margin: 9px 0 19px;
 }
 .local-card > span {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #a7b59a;
   letter-spacing: 0.8px;
   display: flex;
@@ -422,7 +422,7 @@ option {
   align-items: center;
   padding: 19px 3px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
+  font-size: 16px;
 }
 .avatar,
 .top-avatar {
@@ -435,7 +435,7 @@ option {
   border-radius: 50%;
   width: 31px;
   height: 31px;
-  font: 10px var(--mono);
+  font: 15px var(--mono);
 }
 .sidebar-bottom > div {
   flex: 1;
@@ -443,7 +443,7 @@ option {
 .sidebar-bottom small {
   display: block;
   color: #637170;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   letter-spacing: 0.6px;
   margin-top: 5px;
 }
@@ -464,11 +464,11 @@ option {
   display: flex;
   gap: 14px;
   align-items: center;
-  font-size: 11px;
+  font-size: 16px;
   color: #7f8b8c;
 }
 .breadcrumb strong {
-  font-size: 11px;
+  font-size: 16px;
   color: #c7cdcd;
   font-weight: 400;
 }
@@ -490,7 +490,7 @@ option {
   background: transparent;
   border: 0;
   padding: 8px 0;
-  font-size: 10px;
+  font-size: 14px;
   width: 137px;
 }
 .global-search input::placeholder {
@@ -500,11 +500,11 @@ option {
   border: 1px solid #333c3b;
   border-radius: 3px;
   color: #73817e;
-  font-size: 9px;
+  font-size: 13px;
   padding: 3px 5px;
 }
 .system-status {
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   letter-spacing: 0.7px;
   display: flex;
   align-items: center;
@@ -516,7 +516,7 @@ option {
 .top-avatar {
   width: 29px;
   height: 29px;
-  font-size: 8px;
+  font-size: 12px;
 }
 .mobile-menu {
   display: none;
@@ -534,7 +534,7 @@ main {
   margin-bottom: 27px;
 }
 .page-heading .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   color: #829276;
   letter-spacing: 1.6px;
 }
@@ -548,7 +548,7 @@ main {
   margin-left: 3px;
 }
 .page-heading p {
-  font-size: 11px;
+  font-size: 16px;
   color: #899492;
   margin-top: 9px;
 }
@@ -582,7 +582,7 @@ main {
   flex: 1;
 }
 .hero-kicker {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #b3c292;
   letter-spacing: 1.2px;
   display: flex;
@@ -600,7 +600,7 @@ main {
   color: var(--lime);
 }
 .hero p {
-  font-size: 11px;
+  font-size: 16px;
   color: #9ca78f;
   line-height: 1.8;
   margin-top: 13px;
@@ -609,7 +609,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 17px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   color: #c9deaf;
   padding: 0;
@@ -631,7 +631,7 @@ main {
   position: absolute;
   right: 20px;
   top: 15px;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #748360;
   display: flex;
   gap: 12px;
@@ -639,14 +639,14 @@ main {
   z-index: 2;
 }
 .hero-corner > span {
-  font-size: 17px;
+  font-size: 22px;
   color: #b4d36e;
 }
 .hero-version {
   position: absolute;
   right: 20px;
   bottom: 13px;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   color: #6f8063;
   letter-spacing: 1.4px;
   z-index: 2;
@@ -669,7 +669,7 @@ main {
   align-items: center;
   justify-content: space-between;
   color: #91a09b;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   letter-spacing: 0.8px;
 }
 .stat-card > span > svg {
@@ -677,8 +677,7 @@ main {
   width: 14px;
 }
 .stat-card strong {
-  font:
-    31px 'Segoe UI',
+  font: 31px 'Segoe UI',
     sans-serif;
   font-weight: 550;
   display: flex;
@@ -689,7 +688,7 @@ main {
   min-height: 40px;
 }
 .stat-card strong > small {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   letter-spacing: 0.3px;
   margin-top: 8px;
   white-space: nowrap;
@@ -700,14 +699,14 @@ main {
   color: #a8bb78;
   padding: 3px 4px;
   background: #a8b32a08;
-  font-size: 6px !important;
+  font-size: 10px !important;
 }
 .stat-card p {
   display: flex;
   align-items: center;
   gap: 6px;
   color: #6f7c79;
-  font-size: 8px;
+  font-size: 12px;
   margin-top: 8px;
   white-space: normal;
   line-height: 1.5;
@@ -727,7 +726,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 500;
   letter-spacing: -0.2px;
 }
@@ -736,7 +735,7 @@ main {
   height: 5px;
 }
 .section-label > .micro {
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 0.8px;
 }
 .section-label > .micro > span {
@@ -766,14 +765,14 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 500;
 }
 .panel-heading h2 > svg {
   color: #9eac97;
 }
 .panel-heading > .micro {
-  font-size: 6px;
+  font-size: 10px;
   letter-spacing: 1px;
 }
 .operation-header {
@@ -798,11 +797,11 @@ main {
   min-width: 0;
 }
 .operation-header .micro {
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 0.8px;
 }
 .operation-header h2 {
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 550;
   letter-spacing: -0.4px;
   margin-top: 6px;
@@ -812,7 +811,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   color: #909d9b;
   border: 1px solid #45514c70;
   border-radius: 3px;
@@ -859,7 +858,7 @@ main {
   padding: 0 20px 17px;
 }
 .operation-description > p {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.85;
   color: #8d9a97;
   max-width: 600px;
@@ -878,7 +877,7 @@ main {
   border: 1px solid #2d3533;
   border-radius: 3px;
   color: #8e9c96;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
 }
 .operation-chips svg {
   width: 10px;
@@ -894,13 +893,13 @@ main {
   background: #0d1111;
 }
 .ready-controls label {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   letter-spacing: 0.7px;
   color: #7c8d80;
 }
 .ready-controls select {
   padding: 7px 5px;
-  font-size: 10px;
+  font-size: 14px;
   flex: 1;
   min-width: 60px;
 }
@@ -917,7 +916,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 9px;
+  font-size: 13px;
   color: #8b9995;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
@@ -928,7 +927,7 @@ main {
   border-color: var(--lime);
 }
 .detail-tabs > button > span {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   padding: 1px 4px;
   background: #2a302d;
   border-radius: 3px;
@@ -938,7 +937,7 @@ main {
   display: flex;
   gap: 5px;
   align-items: center;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   color: #879789;
   letter-spacing: 0.8px;
 }
@@ -953,7 +952,7 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 12px 12px 0;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   letter-spacing: 0.8px;
   color: #738275;
 }
@@ -982,7 +981,7 @@ main {
 }
 .edge text {
   fill: #7f9085;
-  font: 9px var(--mono);
+  font: 14px var(--mono);
   text-anchor: middle;
 }
 .edge.active line {
@@ -1001,7 +1000,7 @@ main {
 }
 .node text {
   fill: #cbd9c5;
-  font: 12px var(--mono);
+  font: 17px var(--mono);
   text-anchor: middle;
 }
 .node.active circle {
@@ -1017,7 +1016,7 @@ main {
   display: flex;
   gap: 15px;
   padding: 0 12px 10px;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   color: #7d8d7c;
 }
 .graph-legend > span {
@@ -1046,7 +1045,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   letter-spacing: 0.8px;
   color: #61796b;
   margin-bottom: 13px;
@@ -1057,7 +1056,7 @@ main {
   gap: 6px;
 }
 .trace-line {
-  font: 8px/1.8 var(--mono);
+  font: 13px/1.8 var(--mono);
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -1067,13 +1066,13 @@ main {
 .trace-time {
   color: #5b6965;
   min-width: 48px;
-  font-size: 7px;
+  font-size: 11px;
   padding-top: 1px;
 }
 .trace-stage {
   color: #a3c181;
   min-width: 52px;
-  font-size: 7px;
+  font-size: 11px;
   padding-top: 1px;
 }
 .trace-line > span:nth-child(3) {
@@ -1104,11 +1103,11 @@ main {
   display: flex;
   gap: 5px;
   align-items: center;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #6b7b71;
 }
 .operation-footer .text-button {
-  font-size: 8px;
+  font-size: 12px;
 }
 .verification-panel {
   background: linear-gradient(150deg, #141918, #101314 45%);
@@ -1135,13 +1134,13 @@ main {
 }
 .verification-panel > h3 {
   text-align: center;
-  font-size: 16px;
+  font-size: 21px;
   letter-spacing: -0.3px;
   font-weight: 550;
 }
 .verification-intro {
   text-align: center;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.85;
   padding: 10px 24px 20px;
 }
@@ -1154,7 +1153,7 @@ main {
   align-items: center;
   padding: 13px 0;
   border-top: 1px solid #242d28;
-  font-size: 9px;
+  font-size: 13px;
   color: #a1ada6;
   text-transform: capitalize;
 }
@@ -1164,7 +1163,7 @@ main {
 }
 .check-list .pass,
 .check-list .fail {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
 }
 .check-icon {
   display: flex;
@@ -1188,7 +1187,7 @@ main {
   border: 1px solid #ef838325;
 }
 .check-pending {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #687a69;
   background: #1b231d;
   border: 1px solid #354033;
@@ -1209,12 +1208,12 @@ main {
   );
 }
 .semantic-box > .micro {
-  font-size: 7px;
+  font-size: 11px;
   color: #98a48b;
   line-height: 1.7;
 }
 .semantic-box p {
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.8;
   color: #7d8e7e;
   margin-top: 7px;
@@ -1227,17 +1226,17 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #819370;
 }
 .verify-footer .text-button {
-  font-size: 8px;
+  font-size: 12px;
 }
 .recent-title {
   margin-top: 29px;
 }
 .count-pill {
-  font: 9px var(--mono);
+  font: 14px var(--mono);
   padding: 2px 5px;
   background: #1d2422;
   border: 1px solid #323a36;
@@ -1245,7 +1244,7 @@ main {
   color: #889c85;
 }
 .recent-title > .text-button {
-  font-size: 9px;
+  font-size: 13px;
 }
 .empty-history {
   padding: 24px 21px;
@@ -1257,18 +1256,18 @@ main {
   color: #718a64;
 }
 .empty-history strong {
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 500;
   color: #b4c1b4;
 }
 .empty-history p {
-  font-size: 9px;
+  font-size: 13px;
   color: #758773;
   margin-top: 5px;
 }
 .empty-history > .micro {
   margin-left: auto;
-  font-size: 7px;
+  font-size: 11px;
 }
 .main-footer {
   display: flex;
@@ -1278,7 +1277,7 @@ main {
   padding: 23px 0 25px;
   margin-top: 27px;
   border-top: 1px solid #252c28;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   letter-spacing: 0.7px;
   color: #657362;
 }
@@ -1304,7 +1303,7 @@ table {
   text-align: left;
 }
 th {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   letter-spacing: 0.7px;
   color: #708172;
   padding: 14px 18px;
@@ -1314,7 +1313,7 @@ th {
 td {
   padding: 13px 18px;
   border-bottom: 1px solid #222a25;
-  font-size: 10px;
+  font-size: 14px;
   color: #9aa898;
 }
 tr:last-child td {
@@ -1324,7 +1323,7 @@ tr:last-child td {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 16px;
   text-align: left;
   padding: 0;
   color: #d0d9cc;
@@ -1334,7 +1333,7 @@ tr:last-child td {
 }
 .table-title small {
   display: block;
-  font: 6px var(--mono);
+  font: 11px var(--mono);
   color: #788f75;
   margin-top: 6px;
   letter-spacing: 0.7px;
@@ -1348,14 +1347,14 @@ tr:last-child td {
   display: flex;
 }
 .table-mode {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #7c9073;
 }
 .table-panel .badge {
-  font-size: 7px;
+  font-size: 11px;
 }
 .table-panel td.mono {
-  font-size: 8px;
+  font-size: 12px;
 }
 .history-toolbar {
   display: flex;
@@ -1375,7 +1374,7 @@ tr:last-child td {
   gap: 3px;
 }
 .segmented > button {
-  font-size: 10px;
+  font-size: 14px;
   padding: 8px 12px;
   color: #82967e;
   text-transform: capitalize;
@@ -1400,17 +1399,17 @@ tr:last-child td {
   color: var(--lime);
 }
 .library-banner h2 {
-  font-size: 18px;
+  font-size: 23px;
 }
 .library-banner p {
-  font-size: 11px;
+  font-size: 16px;
   color: #8ca27c;
   margin-top: 8px;
 }
 .library-banner > .micro {
   margin-left: auto;
   color: #a8bf94;
-  font-size: 8px;
+  font-size: 12px;
 }
 .library-grid {
   display: grid;
@@ -1445,23 +1444,23 @@ tr:last-child td {
   color: #4d633c;
 }
 .library-card-top > .micro {
-  font-size: 8px;
+  font-size: 12px;
   color: #a7ba92;
   border: 1px solid #56664170;
   padding: 4px 6px;
   border-radius: 3px;
 }
 .library-card > .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   color: #93a87b;
 }
 .library-card h2 {
-  font-size: 21px;
+  font-size: 26px;
   letter-spacing: -0.6px;
   margin-top: 8px;
 }
 .library-card p {
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.85;
   color: #8b9e82;
   margin-top: 12px;
@@ -1471,11 +1470,11 @@ tr:last-child td {
   width: 100%;
   margin-top: auto;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 14px;
 }
 .vault .panel-heading > select {
   margin-left: auto;
-  font-size: 11px;
+  font-size: 16px;
   max-width: 320px;
 }
 .vault-record {
@@ -1488,7 +1487,7 @@ tr:last-child td {
   gap: 15px;
 }
 .evidence-id {
-  font: 10px var(--mono);
+  font: 15px var(--mono);
   color: var(--lime);
   padding: 4px 6px;
   border: 1px solid #c2fa3233;
@@ -1497,11 +1496,11 @@ tr:last-child td {
 }
 .vault-record time {
   margin-left: auto;
-  font: 9px var(--mono);
+  font: 14px var(--mono);
   color: #728769;
 }
 .vault-record h3 {
-  font-size: 13px;
+  font-size: 18px;
   margin: 16px 0;
   color: #c3d0bd;
 }
@@ -1510,7 +1509,7 @@ tr:last-child td {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 14px;
   color: #91a985;
 }
 .vault-record pre {
@@ -1520,7 +1519,7 @@ tr:last-child td {
   border-radius: 4px;
   margin-top: 15px;
   color: #a8c696;
-  font-size: 10px;
+  font-size: 14px;
 }
 .empty-state {
   padding: 85px 30px;
@@ -1531,11 +1530,11 @@ tr:last-child td {
   margin-bottom: 20px;
 }
 .empty-state h3 {
-  font-size: 20px;
+  font-size: 25px;
   color: #c3d0bb;
 }
 .empty-state p {
-  font-size: 12px;
+  font-size: 17px;
   line-height: 1.8;
   color: #859978;
   margin: 12px auto 0;
@@ -1566,24 +1565,24 @@ tr:last-child td {
   left: 29px;
   bottom: -18px;
   color: #7d9959;
-  font-size: 14px;
+  font-size: 19px;
 }
 .architecture-node > span {
   color: var(--lime);
   display: flex;
 }
 .architecture-node h3 {
-  font-size: 11px;
+  font-size: 16px;
 }
 .architecture-node p {
-  font-size: 9px;
+  font-size: 13px;
   color: #8c9f7c;
   margin-top: 6px;
   line-height: 1.6;
 }
 .architecture-node small {
   margin-left: auto;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   color: #9db88b;
   max-width: 65px;
   text-align: right;
@@ -1594,19 +1593,19 @@ tr:last-child td {
 }
 .system-details dt {
   color: #7d9470;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.6px;
   margin-top: 21px;
 }
 .system-details dd {
   margin: 7px 0 0;
-  font-size: 11px;
+  font-size: 16px;
   color: #c2ceb9;
   overflow-wrap: anywhere;
 }
 .system-details dd span {
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   margin-left: 8px;
 }
 .capabilities {
@@ -1619,7 +1618,7 @@ tr:last-child td {
   border: 1px solid #3b492f;
   border-radius: 4px;
   padding: 7px 9px;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   color: #a7bc94;
   display: inline-flex;
   align-items: center;
@@ -1631,7 +1630,7 @@ tr:last-child td {
 .getting-started > p {
   padding: 19px 22px 0;
   color: #a2b193;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .getting-started > pre {
@@ -1641,7 +1640,7 @@ tr:last-child td {
   border: 1px solid #38492d;
   color: #afce89;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .getting-started > p:last-child {
   padding-bottom: 22px;
@@ -1654,13 +1653,13 @@ tr:last-child td {
 .json-view > .micro {
   margin-bottom: 15px;
   color: #91a581;
-  font-size: 8px;
+  font-size: 12px;
 }
 .json-view > pre {
   max-height: 350px;
   overflow: auto;
   color: #b1c5a3;
-  font-size: 10px;
+  font-size: 14px;
 }
 .evidence-list {
   padding: 10px 19px;
@@ -1677,7 +1676,7 @@ tr:last-child td {
   width: 100%;
   padding: 14px 0;
   text-align: left;
-  font-size: 10px;
+  font-size: 14px;
   color: #adc19e;
 }
 .evidence-item > button > span:nth-child(2) {
@@ -1685,11 +1684,11 @@ tr:last-child td {
   line-height: 1.7;
 }
 .evidence-item .micro {
-  font-size: 7px;
+  font-size: 11px;
   white-space: nowrap;
 }
 .evidence-item pre {
-  font-size: 9px;
+  font-size: 13px;
   padding: 12px;
   color: #94b080;
   background: #0a100b;
@@ -1707,7 +1706,7 @@ tr:last-child td {
   color: #6f8860;
 }
 .empty-inline p {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.8;
   max-width: 270px;
 }
@@ -1728,7 +1727,7 @@ tr:last-child td {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 8px;
+  font-size: 12px;
 }
 .answer {
   font: 20px/1.6 var(--mono);
@@ -1741,7 +1740,7 @@ tr:last-child td {
   display: flex;
   align-items: center;
   gap: 12px;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   color: #8fae72;
   margin: 5px 0 15px;
 }
@@ -1750,18 +1749,18 @@ tr:last-child td {
   color: var(--lime);
 }
 .result-box > p {
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.8;
   margin-bottom: 14px;
 }
 .result-box > pre {
-  font-size: 10px;
+  font-size: 14px;
   color: #b5d19a;
   margin: 12px 0;
 }
 .result-box > .text-button {
   color: #b0cb90;
-  font-size: 9px;
+  font-size: 13px;
 }
 .approval-box {
   margin: 18px 19px;
@@ -1772,7 +1771,7 @@ tr:last-child td {
 }
 .approval-box > .eyebrow {
   color: var(--amber);
-  font-size: 8px;
+  font-size: 12px;
 }
 .approval-box h3 {
   font: 16px var(--mono);
@@ -1780,12 +1779,12 @@ tr:last-child td {
   margin: 12px 0;
 }
 .approval-box p {
-  font-size: 10px;
+  font-size: 14px;
   color: #b6a387;
   line-height: 1.7;
 }
 .approval-box pre {
-  font-size: 10px;
+  font-size: 14px;
   margin: 12px 0 17px;
   color: #c6b592;
 }
@@ -1800,7 +1799,7 @@ tr:last-child td {
   color: #efacac;
   border-radius: 4px;
   padding: 13px 15px;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
@@ -1816,17 +1815,17 @@ tr:last-child td {
   color: var(--amber);
 }
 .connection-banner strong {
-  font-size: 11px;
+  font-size: 16px;
 }
 .connection-banner p {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 4px;
   line-height: 1.6;
   color: #b8a389;
 }
 .connection-banner .secondary {
   margin-left: auto;
-  font-size: 10px;
+  font-size: 14px;
   padding: 8px 12px;
 }
 .toast {
@@ -1844,7 +1843,7 @@ tr:last-child td {
   padding: 15px 17px;
   border-radius: 5px;
   max-width: min(500px, calc(100vw - 36px));
-  font-size: 12px;
+  font-size: 17px;
   line-height: 1.6;
 }
 .toast > svg {
@@ -1881,7 +1880,7 @@ tr:last-child td {
   border-bottom: 1px solid #34422e;
 }
 .modal-heading .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   color: #9dc77c;
 }
 .modal-heading h2 {
@@ -1902,7 +1901,7 @@ tr:last-child td {
   display: flex;
   flex-direction: column;
   gap: 9px;
-  font: 8px var(--mono);
+  font: 13px var(--mono);
   letter-spacing: 0.9px;
   color: #9aaf87;
   line-height: 1.5;
@@ -1911,7 +1910,7 @@ tr:last-child td {
 .challenge-modal select,
 .question-field {
   font-family: Inter, 'Segoe UI', sans-serif;
-  font-size: 12px;
+  font-size: 17px;
   color: #c6d7b9;
   letter-spacing: 0;
   background: #0c110d;
@@ -1945,11 +1944,11 @@ tr:last-child td {
   color: #c9e7ae;
 }
 .mode-select > button > span {
-  font-size: 12px;
+  font-size: 17px;
 }
 .mode-select small {
   display: block;
-  font: 7px var(--mono);
+  font: 12px var(--mono);
   margin-top: 6px;
   color: #819d6c;
   letter-spacing: 0.5px;
@@ -1967,15 +1966,15 @@ tr:last-child td {
   margin: 19px 0 11px;
 }
 .editor-toolbar .text-button {
-  font-size: 9px;
+  font-size: 13px;
 }
 .editor-toolbar .segmented > button {
-  font-size: 10px;
+  font-size: 14px;
 }
 .code-editor {
   width: 100%;
   height: 225px;
-  font: 11px/1.75 var(--mono);
+  font: 16px/1.75 var(--mono);
   color: #b0cd94;
   border-color: #33472b;
   background: #090f0a;
@@ -1997,7 +1996,7 @@ tr:last-child td {
 }
 .model-notice p {
   color: #b4aa8f;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.8;
 }
 .modal-footer {
@@ -2013,11 +2012,11 @@ tr:last-child td {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 9px;
+  font-size: 13px;
   color: #8da276;
 }
 .modal-footer .primary {
-  font-size: 11px;
+  font-size: 16px;
 }
 .challenge-modal .error-box {
   margin: 0 0 18px;
@@ -2056,10 +2055,10 @@ tr:last-child td {
     font-size: 43px;
   }
   .hero p {
-    font-size: 13px;
+    font-size: 18px;
   }
   .hero-kicker {
-    font-size: 8px;
+    font-size: 12px;
   }
   .orbital {
     height: 300px;
@@ -2069,10 +2068,10 @@ tr:last-child td {
     padding: 20px;
   }
   .stat-card > span {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stat-card p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .execution-grid {
     grid-template-columns: 2fr 1fr;
@@ -2081,14 +2080,14 @@ tr:last-child td {
     height: 260px;
   }
   .operation-description > p {
-    font-size: 12px;
+    font-size: 17px;
   }
   .trace-line {
-    font-size: 10px;
+    font-size: 14px;
   }
   .trace-time,
   .trace-stage {
-    font-size: 9px;
+    font-size: 13px;
   }
   .trace-time {
     min-width: 61px;
@@ -2097,14 +2096,14 @@ tr:last-child td {
     min-width: 65px;
   }
   .verification-intro {
-    font-size: 12px;
+    font-size: 17px;
   }
   .check-list > div {
-    font-size: 11px;
+    font-size: 16px;
     padding: 15px 0;
   }
   .semantic-box p {
-    font-size: 11px;
+    font-size: 16px;
   }
 }
 @media (max-width: 1200px) {
@@ -2114,19 +2113,19 @@ tr:last-child td {
     padding-right: 12px;
   }
   .brand {
-    font-size: 18px;
+    font-size: 23px;
     gap: 7px;
     padding-left: 5px;
   }
   .brand small {
-    font-size: 6px;
+    font-size: 10px;
   }
   .workspace-label {
     padding-left: 5px;
     gap: 6px;
   }
   .workspace-label small {
-    font-size: 6px;
+    font-size: 10px;
   }
   .nav-item.active::before {
     left: -13px;
@@ -2156,7 +2155,7 @@ tr:last-child td {
     font-size: 30px;
   }
   .hero-kicker {
-    font-size: 6px;
+    font-size: 10px;
     letter-spacing: 1px;
   }
   .stats-grid {
@@ -2166,30 +2165,30 @@ tr:last-child td {
     padding: 13px 12px;
   }
   .stat-card > span {
-    font-size: 6px;
+    font-size: 10px;
   }
   .stat-card strong {
     font-size: 28px;
     gap: 6px;
   }
   .stat-card strong > small {
-    font-size: 6px;
+    font-size: 10px;
   }
   .stat-card p {
-    font-size: 7px;
+    font-size: 11px;
   }
   .stat-tag {
-    font-size: 5px !important;
+    font-size: 9px !important;
   }
   .operation-header {
     padding: 17px 15px;
     gap: 9px;
   }
   .operation-header h2 {
-    font-size: 15px;
+    font-size: 20px;
   }
   .operation-header .badge {
-    font-size: 6px;
+    font-size: 10px;
     padding: 5px;
   }
   .operation-description {
@@ -2205,7 +2204,7 @@ tr:last-child td {
     gap: 13px;
   }
   .detail-tabs > button {
-    font-size: 8px;
+    font-size: 12px;
     gap: 4px;
   }
   .detail-tabs > button svg {
@@ -2219,7 +2218,7 @@ tr:last-child td {
     display: none;
   }
   .ready-controls .compact {
-    font-size: 9px;
+    font-size: 13px;
     padding: 9px;
   }
   .ready-controls .compact > svg:last-child {
@@ -2231,25 +2230,25 @@ tr:last-child td {
     margin-right: 14px;
   }
   .trace-line {
-    font-size: 7px;
+    font-size: 11px;
     gap: 5px;
   }
   .trace-time {
     min-width: 42px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .trace-stage {
     min-width: 44px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .verification-panel .panel-heading > .micro {
-    font-size: 5px;
+    font-size: 9px;
   }
   .verification-panel > h3 {
-    font-size: 14px;
+    font-size: 19px;
   }
   .panel-heading h2 {
-    font-size: 11px;
+    font-size: 16px;
   }
   .library-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2272,13 +2271,13 @@ tr:last-child td {
     grid-template-columns: repeat(2, 1fr);
   }
   .stat-card > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .stat-card p {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stat-card strong > small {
-    font-size: 7px;
+    font-size: 11px;
   }
   .execution-grid {
     grid-template-columns: 1fr;
@@ -2322,65 +2321,65 @@ tr:last-child td {
     z-index: 2;
   }
   .hero-kicker {
-    font-size: 6px;
+    font-size: 10px;
     max-width: 270px;
     line-height: 1.7;
   }
   .hero p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .page-heading h1 {
-    font-size: 25px;
+    font-size: 30px;
   }
   .page-heading p {
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1.7;
     max-width: 300px;
   }
   .page-heading > .primary {
-    font-size: 10px;
+    font-size: 14px;
     padding: 10px;
   }
   .section-label > .micro {
-    font-size: 6px;
+    font-size: 10px;
   }
   .trace-line {
-    font-size: 9px;
+    font-size: 13px;
   }
   .trace-time {
-    font-size: 7px;
+    font-size: 11px;
     min-width: 50px;
   }
   .trace-stage {
-    font-size: 7px;
+    font-size: 11px;
     min-width: 54px;
   }
   .graph-wrap > svg {
     height: 235px;
   }
   .detail-tabs > button {
-    font-size: 10px;
+    font-size: 14px;
   }
   .detail-tabs {
     gap: 22px;
   }
   .operation-header h2 {
-    font-size: 18px;
+    font-size: 23px;
   }
   .operation-header .badge {
-    font-size: 8px;
+    font-size: 12px;
   }
   .operation-description > p {
-    font-size: 11px;
+    font-size: 16px;
   }
   .ready-controls label {
     display: block;
   }
   .ready-controls .compact {
-    font-size: 10px;
+    font-size: 14px;
   }
   .operation-footer .text-button {
-    font-size: 9px;
+    font-size: 13px;
   }
   .main-footer > span:last-child {
     display: none;
@@ -2392,37 +2391,37 @@ tr:last-child td {
     flex-wrap: wrap;
   }
   .history-toolbar > .micro {
-    font-size: 7px;
+    font-size: 11px;
   }
   .history-toolbar > .secondary {
-    font-size: 9px;
+    font-size: 13px;
   }
   .history-toolbar .segmented {
     flex: 1;
   }
   .history-toolbar .segmented > button {
-    font-size: 8px;
+    font-size: 12px;
     padding: 8px;
   }
   .vault .panel-heading {
     flex-wrap: wrap;
   }
   .vault .panel-heading > select {
-    font-size: 9px;
+    font-size: 13px;
     max-width: 230px;
   }
   .vault .panel-heading > .secondary {
-    font-size: 9px;
+    font-size: 13px;
     padding: 9px;
   }
   .library-card {
     padding: 20px;
   }
   .library-card h2 {
-    font-size: 18px;
+    font-size: 23px;
   }
   .library-card p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .empty-history > .micro {
     display: none;
@@ -2454,10 +2453,10 @@ tr:last-child td {
   }
   .breadcrumb {
     gap: 9px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .breadcrumb strong {
-    font-size: 10px;
+    font-size: 14px;
   }
   .topbar-right {
     gap: 14px;
@@ -2465,13 +2464,13 @@ tr:last-child td {
   .system-status {
     padding-left: 0;
     border: 0;
-    font-size: 6px;
+    font-size: 10px;
     letter-spacing: 0.3px;
   }
   .top-avatar {
     width: 26px;
     height: 26px;
-    font-size: 7px;
+    font-size: 11px;
   }
   .sidebar {
     padding-top: 85px;
@@ -2494,20 +2493,20 @@ tr:last-child td {
     gap: 15px;
   }
   .page-heading h1 {
-    font-size: 25px;
+    font-size: 30px;
     line-height: 1.2;
     max-width: 220px;
   }
   .page-heading .eyebrow {
-    font-size: 7px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
   .page-heading p {
-    font-size: 10px;
+    font-size: 14px;
     max-width: 260px;
   }
   .page-heading > .primary {
-    font-size: 9px;
+    font-size: 13px;
     gap: 5px;
     padding: 10px;
     margin-top: 20px;
@@ -2524,12 +2523,12 @@ tr:last-child td {
     letter-spacing: -1px;
   }
   .hero-kicker {
-    font-size: 5px;
+    font-size: 9px;
     letter-spacing: 0.7px;
     max-width: 290px;
   }
   .hero p {
-    font-size: 10px;
+    font-size: 14px;
     position: relative;
     z-index: 2;
   }
@@ -2542,18 +2541,18 @@ tr:last-child td {
     opacity: 0.25;
   }
   .hero-corner {
-    font-size: 5px;
+    font-size: 9px;
     top: 10px;
     right: 12px;
   }
   .hero-version {
-    font-size: 5px;
+    font-size: 9px;
     right: 12px;
     letter-spacing: 0.8px;
     bottom: 11px;
   }
   .hero-link {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stats-grid {
     margin-top: 13px;
@@ -2564,7 +2563,7 @@ tr:last-child td {
     padding: 13px;
   }
   .stat-card > span {
-    font-size: 7px;
+    font-size: 11px;
     letter-spacing: 0.3px;
   }
   .stat-card strong {
@@ -2572,20 +2571,20 @@ tr:last-child td {
     gap: 7px;
   }
   .stat-card strong > small {
-    font-size: 5px;
+    font-size: 9px;
   }
   .stat-card p {
-    font-size: 7px;
+    font-size: 11px;
     line-height: 1.7;
   }
   .stat-card > span > svg {
     width: 12px;
   }
   .section-label h2 {
-    font-size: 12px;
+    font-size: 17px;
   }
   .section-label > .micro {
-    font-size: 5px;
+    font-size: 9px;
     letter-spacing: 0.2px;
   }
   .section-label > .micro > span {
@@ -2596,13 +2595,13 @@ tr:last-child td {
     gap: 9px;
   }
   .operation-header h2 {
-    font-size: 16px;
+    font-size: 21px;
   }
   .operation-header .micro {
-    font-size: 6px;
+    font-size: 10px;
   }
   .operation-header .badge {
-    font-size: 6px;
+    font-size: 10px;
   }
   .operation-icon {
     width: 32px;
@@ -2612,10 +2611,10 @@ tr:last-child td {
     width: 18px;
   }
   .operation-description > p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .operation-chips > span {
-    font-size: 6px;
+    font-size: 10px;
   }
   .ready-controls {
     gap: 7px;
@@ -2624,10 +2623,10 @@ tr:last-child td {
     display: none;
   }
   .ready-controls select {
-    font-size: 9px;
+    font-size: 13px;
   }
   .ready-controls .compact {
-    font-size: 9px;
+    font-size: 13px;
     padding: 9px 8px;
   }
   .detail-tabs {
@@ -2635,86 +2634,86 @@ tr:last-child td {
     padding: 0 15px;
   }
   .detail-tabs > button {
-    font-size: 8px;
+    font-size: 12px;
     gap: 5px;
   }
   .detail-tabs > button svg {
     width: 11px;
   }
   .stream-label {
-    font-size: 5px;
+    font-size: 9px;
     gap: 4px;
   }
   .graph-wrap > svg {
     height: 195px;
   }
   .graph-caption {
-    font-size: 5px;
+    font-size: 9px;
     padding: 10px 8px 0;
     letter-spacing: 0.5px;
   }
   .graph-legend {
-    font-size: 5px;
+    font-size: 9px;
   }
   .trace-console {
     padding: 11px 9px;
   }
   .trace-line {
-    font-size: 7px;
+    font-size: 11px;
     gap: 5px;
     line-height: 1.9;
   }
   .trace-time {
     min-width: 39px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .trace-stage {
     min-width: 42px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .console-heading {
-    font-size: 5px;
+    font-size: 9px;
   }
   .operation-footer {
     padding: 12px 15px;
   }
   .operation-footer > span {
-    font-size: 6px;
-  }
-  .operation-footer .text-button {
-    font-size: 7px;
-  }
-  .verification-panel .panel-heading > .micro {
-    font-size: 6px;
-  }
-  .verification-panel > h3 {
-    font-size: 16px;
-  }
-  .verification-intro {
-    font-size: 11px;
-  }
-  .check-list > div {
-    font-size: 8px;
-  }
-  .semantic-box p {
     font-size: 10px;
   }
+  .operation-footer .text-button {
+    font-size: 11px;
+  }
+  .verification-panel .panel-heading > .micro {
+    font-size: 10px;
+  }
+  .verification-panel > h3 {
+    font-size: 21px;
+  }
+  .verification-intro {
+    font-size: 16px;
+  }
+  .check-list > div {
+    font-size: 12px;
+  }
+  .semantic-box p {
+    font-size: 14px;
+  }
   .recent-title > .text-button {
-    font-size: 8px;
+    font-size: 12px;
   }
   .empty-history {
     padding: 22px 16px;
     gap: 11px;
   }
   .empty-history strong {
-    font-size: 10px;
+    font-size: 14px;
   }
   .empty-history p {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.7;
   }
   .main-footer {
-    font-size: 6px;
+    font-size: 10px;
     padding-top: 20px;
   }
   .library-grid {
@@ -2728,24 +2727,24 @@ tr:last-child td {
     width: 25px;
   }
   .library-banner h2 {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 1.5;
   }
   .library-banner p {
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1.8;
   }
   .library-card {
     min-height: 270px;
   }
   .library-card h2 {
-    font-size: 23px;
+    font-size: 28px;
   }
   .library-card p {
-    font-size: 12px;
+    font-size: 17px;
   }
   .library-card > .eyebrow {
-    font-size: 9px;
+    font-size: 13px;
   }
   .library-card-top {
     margin-bottom: 22px;
@@ -2756,7 +2755,7 @@ tr:last-child td {
   }
   .history-toolbar .segmented > button {
     flex: 1;
-    font-size: 8px;
+    font-size: 12px;
     white-space: nowrap;
   }
   .history-toolbar > .micro {
@@ -2773,17 +2772,17 @@ tr:last-child td {
     padding: 18px;
   }
   .vault-record time {
-    font-size: 6px;
+    font-size: 10px;
   }
   .vault-record > div {
     gap: 10px;
   }
   .vault-record h3 {
-    font-size: 11px;
+    font-size: 16px;
     line-height: 1.8;
   }
   .vault-record pre {
-    font-size: 8px;
+    font-size: 12px;
   }
   .modal-backdrop {
     padding: 10px;
@@ -2795,7 +2794,7 @@ tr:last-child td {
     padding: 22px 19px;
   }
   .modal-heading h2 {
-    font-size: 23px;
+    font-size: 28px;
   }
   .challenge-modal form {
     padding: 20px 19px 0;
@@ -2815,25 +2814,25 @@ tr:last-child td {
     width: 14px;
   }
   .mode-select > button > span {
-    font-size: 10px;
+    font-size: 14px;
   }
   .mode-select small {
-    font-size: 5px;
+    font-size: 9px;
     letter-spacing: 0.2px;
   }
   .editor-toolbar .segmented > button {
-    font-size: 9px;
+    font-size: 13px;
     padding: 7px 9px;
   }
   .editor-toolbar .text-button {
-    font-size: 8px;
+    font-size: 12px;
     gap: 4px;
   }
   .editor-toolbar .text-button > svg {
     width: 12px;
   }
   .code-editor {
-    font-size: 10px;
+    font-size: 14px;
     height: 200px;
   }
   .modal-footer {
@@ -2844,15 +2843,15 @@ tr:last-child td {
     width: 100%;
   }
   .modal-footer > span {
-    font-size: 9px;
+    font-size: 13px;
   }
   .answer {
-    font-size: 17px;
+    font-size: 22px;
   }
   .toast {
     right: 18px;
     bottom: 18px;
-    font-size: 11px;
+    font-size: 16px;
     padding: 12px;
   }
   .connection-banner {
@@ -2863,13 +2862,13 @@ tr:last-child td {
     width: 16px;
   }
   .connection-banner strong {
-    font-size: 10px;
+    font-size: 14px;
   }
   .connection-banner p {
-    font-size: 9px;
+    font-size: 13px;
   }
   .connection-banner .secondary {
-    font-size: 9px;
+    font-size: 13px;
     padding: 8px;
   }
 }
@@ -2880,156 +2879,156 @@ tr:last-child td {
 }
 /* Minimum text sizes retain the terminal aesthetic without sacrificing readability. */
 .hero-kicker {
-  font-size: 8px;
+  font-size: 12px;
 }
 .hero-version {
-  font-size: 7px;
+  font-size: 11px;
 }
 .hero-corner {
-  font-size: 8px;
+  font-size: 12px;
 }
 .stat-card > span {
-  font-size: 9px;
+  font-size: 13px;
 }
 .stat-card p {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.65;
 }
 .stat-card strong > small {
-  font-size: 8px;
-}
-.stat-tag {
-  font-size: 7px !important;
-}
-.operation-description > p {
   font-size: 12px;
 }
+.stat-tag {
+  font-size: 11px !important;
+}
+.operation-description > p {
+  font-size: 17px;
+}
 .operation-chips > span {
-  font-size: 9px;
+  font-size: 13px;
 }
 .operation-header .micro {
-  font-size: 8px;
+  font-size: 12px;
 }
 .detail-tabs > button {
-  font-size: 10px;
+  font-size: 14px;
 }
 .detail-tabs > button > span {
-  font-size: 8px;
+  font-size: 12px;
 }
 .stream-label {
-  font-size: 8px;
+  font-size: 12px;
 }
 .graph-caption,
 .graph-legend {
-  font-size: 8px;
+  font-size: 12px;
 }
 .console-heading {
-  font-size: 8px;
+  font-size: 12px;
 }
 .trace-line {
-  font-size: 10px;
+  font-size: 14px;
 }
 .trace-time {
-  font-size: 8px;
+  font-size: 12px;
   min-width: 52px;
 }
 .trace-stage {
-  font-size: 8px;
+  font-size: 12px;
   min-width: 58px;
 }
 .panel-heading > .micro,
 .verification-panel .panel-heading > .micro {
-  font-size: 7px;
+  font-size: 11px;
 }
 .check-list > div {
-  font-size: 10px;
+  font-size: 14px;
 }
 .check-list .pass,
 .check-list .fail {
-  font-size: 8px;
+  font-size: 12px;
 }
 .semantic-box > .micro {
-  font-size: 8px;
+  font-size: 12px;
 }
 .semantic-box p {
-  font-size: 11px;
+  font-size: 16px;
 }
 .verify-footer {
-  font-size: 8px;
+  font-size: 12px;
 }
 .table-mode,
 th {
-  font-size: 9px;
+  font-size: 13px;
 }
 .table-panel .badge {
-  font-size: 9px;
+  font-size: 13px;
 }
 .table-panel td.mono {
-  font-size: 10px;
+  font-size: 14px;
 }
 .table-title small {
-  font-size: 8px;
+  font-size: 12px;
 }
 .operation-footer > span {
-  font-size: 8px;
+  font-size: 12px;
 }
 .operation-footer .text-button {
-  font-size: 10px;
+  font-size: 14px;
 }
 .main-footer {
-  font-size: 8px;
+  font-size: 12px;
 }
 .badge {
-  font-size: 9px;
+  font-size: 13px;
 }
 .brand small {
-  font-size: 7px;
-}
-.stack-item {
   font-size: 11px;
 }
+.stack-item {
+  font-size: 16px;
+}
 .sidebar-bottom small {
-  font-size: 7px;
+  font-size: 11px;
 }
 @media (max-width: 1200px) {
   .stat-card > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .stat-card p {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stat-card strong > small {
-    font-size: 7px;
+    font-size: 11px;
   }
   .operation-chips > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .trace-line {
-    font-size: 9px;
+    font-size: 13px;
   }
   .trace-stage {
-    font-size: 7px;
+    font-size: 11px;
     min-width: 50px;
   }
   .trace-time {
-    font-size: 7px;
+    font-size: 11px;
     min-width: 45px;
   }
   .panel-heading > .micro,
   .verification-panel .panel-heading > .micro {
-    font-size: 6px;
+    font-size: 10px;
   }
   .graph-caption,
   .graph-legend {
-    font-size: 7px;
+    font-size: 11px;
   }
   .main-footer {
-    font-size: 7px;
+    font-size: 11px;
   }
 }
 @media (max-width: 720px) {
   .hero-kicker {
-    font-size: 7px;
+    font-size: 11px;
     max-width: 260px;
     line-height: 1.8;
   }
@@ -3038,48 +3037,48 @@ th {
   }
   .hero-version,
   .hero-corner {
-    font-size: 6px;
+    font-size: 10px;
   }
   .stat-card > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .stat-card strong > small {
-    font-size: 6px;
+    font-size: 10px;
   }
   .stat-card p {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stat-tag {
-    font-size: 6px !important;
+    font-size: 10px !important;
   }
   .operation-description > p {
-    font-size: 11px;
+    font-size: 16px;
   }
   .operation-chips > span {
-    font-size: 7px;
+    font-size: 11px;
   }
   .operation-header .micro {
-    font-size: 7px;
+    font-size: 11px;
   }
   .operation-header .badge {
-    font-size: 7px;
+    font-size: 11px;
   }
   .detail-tabs > button {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stream-label {
-    font-size: 6px;
+    font-size: 10px;
   }
   .graph-caption,
   .graph-legend {
-    font-size: 6px;
+    font-size: 10px;
   }
   .trace-line {
-    font-size: 9px;
+    font-size: 13px;
   }
   .trace-time,
   .trace-stage {
-    font-size: 7px;
+    font-size: 11px;
   }
   .trace-time {
     min-width: 42px;
@@ -3088,34 +3087,34 @@ th {
     min-width: 49px;
   }
   .console-heading {
-    font-size: 7px;
+    font-size: 11px;
   }
   .check-list {
     grid-template-columns: 1fr;
   }
   .check-list > div {
-    font-size: 11px;
+    font-size: 16px;
   }
   .operation-footer {
     flex-wrap: wrap;
   }
   .operation-footer > span {
-    font-size: 7px;
+    font-size: 11px;
   }
   .operation-footer .text-button {
-    font-size: 8px;
-  }
-  .main-footer {
-    font-size: 6px;
-  }
-  .table-title {
     font-size: 12px;
   }
+  .main-footer {
+    font-size: 10px;
+  }
+  .table-title {
+    font-size: 17px;
+  }
   .table-title small {
-    font-size: 8px;
+    font-size: 12px;
   }
   .semantic-box p {
-    font-size: 11px;
+    font-size: 16px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

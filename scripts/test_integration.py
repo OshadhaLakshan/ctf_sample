@@ -70,21 +70,23 @@ class ModelMock(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Respond to the local model health probe."""
-        self.send_json({"status": "ok"})
+        self.send_json({"data": [{"id": "test-gemma"}]} if self.path == '/v1/models' else {"status": "ok"})
 
     def do_POST(self):
         """Produce role-specific JSON with deliberate malformed and malicious cases."""
         # Decode the actual engine prompt to verify its role/context integration.
         payload = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
-        role = payload["messages"][0]["content"].split("Current role: ")[-1]
+        role = payload["messages"][0]["content"].split("R0WD0GG's ")[-1].split('.')[0]
         context = json.loads(payload["messages"][1]["content"])
         question = context.get("question", "")
         if role == "Analyst":
             answer = {"version": "broken"} if "malformed" in question else SPEC
         elif role == "Planner":
             answer = {"action": "SHELL", "arguments": {"command": "echo blocked"}} if "blocked" in question else ACTIONS[context["state"]["steps"]]
+        elif role == "Diagnostic":
+            answer = {"ok": True}
         else:
-            answer = {"answers_question": "yes"} if "invalid_review" in question else {"answers_question": True, "confidence": 0.9, "reason": "Mock contract review only"}
+            answer = {"answers_question": "yes"} if "invalid_review" in question else {"answers_question": "mismatch" not in question, "input_matches_question": "mismatch" not in question, "confidence": 0.9, "answer_text": "", "reason": "Mock contract review only", "explanation": "Mock contract explanation"}
         self.send_json({"choices": [{"message": {"content": json.dumps(answer)}}]})
 
     def send_json(self, data):
@@ -105,7 +107,7 @@ def main():
     """Launch isolated services, execute assertions, and always stop test-owned processes."""
     # Tests never overwrite user run history and never reuse an unknown process.
     storage = tempfile.mkdtemp(prefix="integration-", dir=ROOT / "tmp")
-    environment = {**os.environ, "ROWDOGG_DATA_DIR": storage}
+    environment = {**os.environ, "ROWDOGG_DATA_DIR": storage, "ROWDOGG_LLAMA_URL": "http://127.0.0.1:8082"} # Keep the real model on 8081 untouched.
     binary = ROOT / "build" / ("rowdogg.exe" if os.name == "nt" else "rowdogg")
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
     engine = None
@@ -115,7 +117,7 @@ def main():
     try:
         # Refuse occupied ports to avoid testing or terminating somebody else's service.
         import socket
-        for port in (8080, 8081, 8090):
+        for port in (8080, 8082, 8090):
             with socket.socket() as probe:
                 check(probe.connect_ex(("127.0.0.1", port)) != 0, f"Port {port} must be free for isolated integration tests")
         engine = subprocess.Popen([str(binary)], cwd=ROOT, env=environment, stdout=log, stderr=log, creationflags=flags)
@@ -168,12 +170,17 @@ def main():
         fabricated_id = start_run("agent", actions=[{"action": "BASE64_DECODE", "arguments": {"text": base64.b64encode(b"CTF{invented}").decode()}}, {"action": "VERIFY_FLAG", "arguments": {"from_previous": True}}])
         check("no supporting" in await_status(fabricated_id, {"failed"})["error"], "Model-provided bytes cannot fabricate lab provenance")
         # Run an actual local HTTP mock only for adapter/schema contract tests.
-        mock = ThreadingHTTPServer(("127.0.0.1", 8081), ModelMock)
+        mock = ThreadingHTTPServer(("127.0.0.1", 8082), ModelMock)
         threading.Thread(target=mock.serve_forever, daemon=True).start()
         natural_id = start_run(question="Find the shortest route")
         check(await_status(natural_id, {"verified", "failed"})["status"] == "verified", "Analyst and reviewer HTTP contracts")
         malformed_id = start_run(question="malformed model output")
-        check(await_status(malformed_id, {"failed"})["status"] == "failed", "Model-generated malformed CTF-IR rejected")
+        check(await_status(malformed_id, {"needs_input"})["status"] == "needs_input", "Malformed CTF-IR prompts clarification after bounded repair")
+        check(call('/model')['selected_model'] == 'test-gemma', 'Model discovery uses actual server ID')
+        check(call('/model/test', {})['passed'], 'Diagnostic JSON generation contract')
+        call('/model', {'base_url': 'http://remote.invalid:8081'}, 400)
+        mismatch_id = start_run(spec=SPEC, question='mismatch question')
+        check(await_status(mismatch_id, {'needs_review'})['solution']['question_crosschecked'] is False, 'Semantic mismatch never marked verified')
         review_id = start_run(spec=SPEC, question="invalid_review")
         check(await_status(review_id, {"computed", "failed"})["semantic_review"]["status"] == "failed", "Malformed review cannot confer verified status")
         planned_id = start_run("agent", question="Find the flag in the local challenge", max_steps=3)

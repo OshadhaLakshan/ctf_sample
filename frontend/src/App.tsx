@@ -40,16 +40,10 @@ import {
   Zap,
 } from 'lucide-react';
 import { api, downloadJson } from './api';
-import {
-  Badge,
-  ChallengeModal,
-  Graph,
-  Orbital,
-  Result,
-  VerificationPanel,
-  statusLabel,
-} from './components';
+import { Badge, ChallengeModal, Graph, Result, VerificationPanel, statusLabel } from './components';
 import { examples } from './examples';
+import { ProblemComposer } from './ProblemComposer';
+import { ModelConnection } from './ModelConnection';
 import type { Example, Health, Run, Verification } from './types';
 
 /** Sidebar destinations are real application views, not external navigation placeholders. */
@@ -62,6 +56,14 @@ const navigation = [
 ];
 /** Terminal status membership controls polling, stop buttons, and dashboard aggregates. */
 const activeStates = new Set(['running', 'awaiting_approval', 'queued']);
+/** Empty editor for new work; examples remain available from the library. */
+const customChallenge: Example = {
+  id: 'custom',
+  title: '',
+  description: '',
+  category: 'Custom',
+  tag: 'GEMMA',
+};
 
 /** Formats a true measured duration without fabricating values for unfinished runs. */
 function duration(milliseconds?: number): string {
@@ -346,12 +348,12 @@ export default function App() {
         </a>
         <div className="workspace-label">
           <span className="workspace-icon">
-            <Terminal size={16} />
+            <Terminal size={20} />
           </span>
           <div>
             Local workspace<small>PERSONAL / OFFLINE FIRST</small>
           </div>
-          <LockKeyhole size={12} />
+          <LockKeyhole size={16} />
         </div>
         <span className="nav-heading">WORKSPACE</span>
         <nav aria-label="Main navigation">
@@ -361,7 +363,7 @@ export default function App() {
               className={page === item.id ? 'nav-item active' : 'nav-item'}
               onClick={() => navigate(item.id)}
             >
-              <item.icon size={18} />
+              <item.icon size={22} />
               <span>{item.label}</span>
               {item.id === 'history' && active > 0 && <b>{active}</b>}
               {page === item.id && <span className="nav-active-dot" />}
@@ -371,17 +373,17 @@ export default function App() {
         <div className="sidebar-divider" />
         <span className="nav-heading">ENGINE STACK</span>
         <div className="stack-item">
-          <Code2 size={16} />
+          <Code2 size={20} />
           <span>C++20 core</span>
           <i className={health ? 'online-dot' : 'offline-dot'} />
         </div>
         <div className="stack-item">
-          <Cpu size={16} />
+          <Cpu size={20} />
           <span>Gemma / llama.cpp</span>
           <i className={health?.model_available ? 'online-dot' : 'amber-dot'} />
         </div>
         <div className="stack-item">
-          <ShieldCheck size={16} />
+          <ShieldCheck size={20} />
           <span>Policy enforcement</span>
           <i className={health ? 'online-dot' : 'offline-dot'} />
         </div>
@@ -407,7 +409,7 @@ export default function App() {
             onClick={() => navigate('settings')}
             aria-label="Open system details"
           >
-            <Settings2 size={16} />
+            <Settings2 size={20} />
           </button>
         </div>
       </aside>
@@ -419,15 +421,15 @@ export default function App() {
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle navigation"
             >
-              <Menu size={20} />
+              <Menu size={24} />
             </button>
             <span>Workspace</span>
-            <ChevronRight size={13} />
+            <ChevronRight size={17} />
             <strong>{navigation.find((item) => item.id === page)?.label}</strong>
           </div>
           <div className="topbar-right">
             <div className="global-search">
-              <Search size={15} />
+              <Search size={19} />
               <input
                 ref={search}
                 value={query}
@@ -455,7 +457,7 @@ export default function App() {
               </span>
               <h1>
                 {page === 'overview'
-                  ? 'Operations overview'
+                  ? 'Operator console'
                   : page === 'library'
                     ? 'Challenge lab'
                     : page === 'history'
@@ -467,7 +469,7 @@ export default function App() {
               </h1>
               <p>
                 {page === 'overview'
-                  ? 'Local intelligence. Deterministic execution. Nothing left unverified.'
+                  ? 'LOCAL HOST // CTF WORKBENCH // EVIDENCE FIRST'
                   : page === 'library'
                     ? 'Pick a starting point. Every example runs through the real C++ engine.'
                     : page === 'history'
@@ -477,14 +479,14 @@ export default function App() {
                         : 'The model proposes. The deterministic engine decides.'}
               </p>
             </div>
-            <button className="primary" onClick={() => setModal(example)}>
-              <Plus size={16} />
+            <button className="primary" onClick={() => setModal(customChallenge)}>
+              <Plus size={20} />
               New operation
             </button>
           </div>
           {connectionError && (
             <div className="connection-banner" role="alert">
-              <Radio size={18} />
+              <Radio size={22} />
               <div>
                 <strong>Engine connection unavailable</strong>
                 <p>{connectionError}</p>
@@ -495,37 +497,19 @@ export default function App() {
             </div>
           )}
           {page === 'overview' && (
-            <>
-              <section className="hero">
-                <div className="hero-content">
-                  <span className="hero-kicker">
-                    <span className="tiny-dot" /> BUILT FOR THE CHALLENGE. ENGINEERED FOR PROOF.
-                  </span>
-                  <h2>
-                    TRUST NOTHING.
-                    <br />
-                    <span>VERIFY EVERYTHING.</span>
-                  </h2>
-                  <p>
-                    Turn complex challenges into evidence-backed answers.
-                    <br />
-                    AI-assisted reasoning. The precision of C++.
-                  </p>
-                  <button className="hero-link" onClick={() => navigate('library')}>
-                    Explore the challenge lab <ArrowUpRight size={16} />
-                  </button>
-                </div>
-                <Orbital />
-                <div className="hero-corner">
-                  SYS / R0W_01 <span>⌜</span>
-                </div>
-                <span className="hero-version">FRAMEWORK V0.1 / LOCAL ENVIRONMENT</span>
-              </section>
+            <div className="operator-layout">
+              <ProblemComposer
+                health={health}
+                busy={busy}
+                run={run}
+                onLaunch={launch}
+                onConnect={() => navigate('settings')}
+              />
               <div className="stats-grid">
                 <div className="stat-card">
                   <span>
                     ACTIVE OPERATIONS
-                    <Activity size={16} />
+                    <Activity size={20} />
                   </span>
                   <strong>
                     {String(active).padStart(2, '0')}
@@ -539,7 +523,7 @@ export default function App() {
                 <div className="stat-card">
                   <span>
                     CHECK PASS RATE
-                    <ShieldCheck size={16} />
+                    <ShieldCheck size={20} />
                   </span>
                   <strong>
                     {rate === null ? '—' : `${rate}%`}
@@ -552,7 +536,7 @@ export default function App() {
                 <div className="stat-card">
                   <span>
                     AVG. EXECUTION TIME
-                    <Clock3 size={16} />
+                    <Clock3 size={20} />
                   </span>
                   <strong>
                     {duration(mean)}
@@ -563,14 +547,14 @@ export default function App() {
                 <div className="stat-card">
                   <span>
                     EVIDENCE COLLECTED
-                    <Database size={16} />
+                    <Database size={20} />
                   </span>
                   <strong>
                     {String(evidenceCount).padStart(2, '0')}
                     <small className="muted">RECORDS</small>
                   </strong>
                   <p>
-                    <LockKeyhole size={11} />
+                    <LockKeyhole size={15} />
                     Persisted locally for inspection
                   </p>
                 </div>
@@ -588,7 +572,7 @@ export default function App() {
                 <section className="panel operation-panel">
                   <div className="operation-header">
                     <div className="operation-icon">
-                      <Network size={22} />
+                      <Network size={26} />
                     </div>
                     <div>
                       <span className="micro">
@@ -616,16 +600,16 @@ export default function App() {
                     </p>
                     <div className="operation-chips">
                       <span>
-                        <GitBranch size={12} />
+                        <GitBranch size={16} />
                         {run?.spec?.problem.type ||
                           (!selectedId ? example.tag : run?.mode || 'Loading')}
                       </span>
                       <span>
-                        <Shield size={12} />
+                        <Shield size={16} />
                         Policy enforced
                       </span>
                       <span>
-                        <Cpu size={12} />
+                        <Cpu size={16} />
                         {run?.mode === 'agent'
                           ? `${run.steps}/${run.max_steps} steps`
                           : 'C++20 engine'}
@@ -653,16 +637,16 @@ export default function App() {
                         disabled={busy || !health}
                         onClick={() => void launchExample()}
                       >
-                        {busy ? <LoaderCircle size={14} className="spin" /> : <Zap size={14} />}Run
+                        {busy ? <LoaderCircle size={18} className="spin" /> : <Zap size={18} />}Run
                         challenge
-                        <ArrowUpRight size={14} />
+                        <ArrowUpRight size={18} />
                       </button>
                       <button
                         className="icon-button"
                         aria-label="Edit challenge"
                         onClick={() => setModal(example)}
                       >
-                        <Settings2 size={16} />
+                        <Settings2 size={20} />
                       </button>
                     </div>
                   )}
@@ -679,7 +663,7 @@ export default function App() {
                         className={tab === item.id ? 'selected' : ''}
                         onClick={() => setTab(item.id)}
                       >
-                        <item.icon size={14} />
+                        <item.icon size={18} />
                         {item.label}
                         {item.id === 'evidence' && <span>{evidence.length}</span>}
                       </button>
@@ -697,7 +681,7 @@ export default function App() {
                       <div className="trace-console">
                         <div className="console-heading">
                           <span>
-                            <Terminal size={13} />
+                            <Terminal size={17} />
                             EXECUTION LOG
                           </span>
                           <span>{run ? `${evidence.length} EVENTS` : 'WAITING FOR INPUT'}</span>
@@ -765,7 +749,7 @@ export default function App() {
                             >
                               <span className="micro">{item.id}</span>
                               <span>{item.message}</span>
-                              <ChevronDown size={15} />
+                              <ChevronDown size={19} />
                             </button>
                             {expandedEvidence === item.id && (
                               <pre>{JSON.stringify(item.content, null, 2)}</pre>
@@ -774,7 +758,7 @@ export default function App() {
                         ))
                       ) : (
                         <div className="empty-inline">
-                          <Database size={24} />
+                          <Database size={28} />
                           <p>No observations yet. Run the challenge to collect evidence.</p>
                         </div>
                       )}
@@ -790,7 +774,7 @@ export default function App() {
                       </p>
                       <pre>{JSON.stringify(run.pending_action.arguments, null, 2)}</pre>
                       <button className="primary compact" onClick={() => void approve()}>
-                        <Check size={14} />
+                        <Check size={18} />
                         Approve this action
                       </button>
                       <button className="text-button" onClick={() => void stop()}>
@@ -804,16 +788,43 @@ export default function App() {
                     </div>
                   )}
                   {run?.result && <Result run={run} notify={setNotice} />}
+                  {run &&
+                    ['needs_input', 'needs_review', 'failed', 'computed'].includes(run.status) && (
+                      <div className="clarification-box">
+                        <h3>
+                          {run.status === 'needs_input'
+                            ? 'More information needed'
+                            : 'Refine and retry'}
+                        </h3>
+                        {run.missing_information?.map((question, index) => (
+                          <p key={index}>{question}</p>
+                        ))}
+                        <button
+                          className="secondary"
+                          onClick={() =>
+                            setModal({
+                              ...customChallenge,
+                              title: run.title,
+                              description: run.request?.question || run.question || '',
+                              ...(run.request?.spec ? { spec: run.request.spec } : {}),
+                              ...(run.request?.actions ? { actions: run.request.actions } : {}),
+                            })
+                          }
+                        >
+                          Edit challenge & retry <ArrowRight size={18} />
+                        </button>
+                      </div>
+                    )}
                   <div className="operation-footer">
                     <span>
-                      <LockKeyhole size={12} />
+                      <LockKeyhole size={16} />
                       {run
                         ? `Duration ${duration(run.duration_ms)}`
                         : 'All computation stays on your machine'}
                     </span>
                     {run && activeStates.has(run.status) ? (
                       <button className="danger-button" onClick={() => void stop()}>
-                        <Square size={12} />
+                        <Square size={16} />
                         Stop execution
                       </button>
                     ) : (
@@ -825,7 +836,7 @@ export default function App() {
                           setModal(example);
                         }}
                       >
-                        Configure challenge <ArrowRight size={14} />
+                        Configure challenge <ArrowRight size={18} />
                       </button>
                     )}
                   </div>
@@ -837,11 +848,11 @@ export default function App() {
                   Recent operations <span className="count-pill">{runs.length}</span>
                 </h2>
                 <button className="text-button" onClick={() => navigate('history')}>
-                  View all operations <ArrowRight size={14} />
+                  View all operations <ArrowRight size={18} />
                 </button>
               </div>
               <RunTable runs={runs.slice(0, 4)} onSelect={selectRun} />
-            </>
+            </div>
           )}
           {page === 'library' && (
             <>
@@ -870,7 +881,7 @@ export default function App() {
                         setModal(item);
                       }}
                     >
-                      Open challenge <ArrowUpRight size={16} />
+                      Open challenge <ArrowUpRight size={20} />
                     </button>
                   </article>
                 ))}
@@ -908,7 +919,7 @@ export default function App() {
                   onClick={() => downloadJson('rowdogg-operations.json', visibleRuns)}
                   disabled={!visibleRuns.length}
                 >
-                  <ArrowDownToLine size={14} />
+                  <ArrowDownToLine size={18} />
                   Export summaries
                 </button>
               </div>
@@ -919,7 +930,7 @@ export default function App() {
             <section className="panel vault">
               <div className="panel-heading">
                 <h2>
-                  <Database size={18} />
+                  <Database size={22} />
                   Recorded observations
                 </h2>
                 <select
@@ -941,7 +952,7 @@ export default function App() {
                     run && downloadJson(`evidence-${run.id.slice(0, 8)}.json`, run.evidence)
                   }
                 >
-                  <ArrowDownToLine size={14} />
+                  <ArrowDownToLine size={18} />
                   Export
                 </button>
               </div>
@@ -956,7 +967,7 @@ export default function App() {
                     <h3>{item.message}</h3>
                     <details>
                       <summary>
-                        Inspect raw payload <ChevronDown size={14} />
+                        Inspect raw payload <ChevronDown size={18} />
                       </summary>
                       <pre>{JSON.stringify(item.content, null, 2)}</pre>
                     </details>
@@ -974,7 +985,18 @@ export default function App() {
               )}
             </section>
           )}
-          {page === 'settings' && <System health={health} />}
+          {page === 'settings' && (
+            <>
+              <ModelConnection
+                onUpdate={() => {
+                  void api<Health>('/health')
+                    .then(setHealth)
+                    .catch(() => setHealth(null));
+                }}
+              />
+              <System health={health} />
+            </>
+          )}
           <footer className="main-footer">
             <span>
               <span className="tiny-dot" />
@@ -982,7 +1004,7 @@ export default function App() {
             </span>
             <span>
               LOCAL BY DESIGN. VERIFIED BY COMPUTATION.
-              <ShieldCheck size={13} />
+              <ShieldCheck size={17} />
             </span>
           </footer>
         </main>
@@ -992,14 +1014,14 @@ export default function App() {
       )}
       {notice && (
         <div className="toast" role="status">
-          <Terminal size={18} />
+          <Terminal size={22} />
           <span>{notice}</span>
           <button
             className="icon-button"
             onClick={() => setNotice('')}
             aria-label="Dismiss notification"
           >
-            <X size={16} />
+            <X size={20} />
           </button>
         </div>
       )}
@@ -1032,7 +1054,7 @@ function RunTable({ runs, onSelect }: { runs: Run[]; onSelect: (run: Run) => voi
                   <td>
                     <button className="table-title" onClick={() => onSelect(run)}>
                       <span className="table-icon">
-                        {run.mode === 'agent' ? <Workflow size={16} /> : <FileCode2 size={16} />}
+                        {run.mode === 'agent' ? <Workflow size={20} /> : <FileCode2 size={20} />}
                       </span>
                       <span>
                         {run.title}
@@ -1058,7 +1080,7 @@ function RunTable({ runs, onSelect }: { runs: Run[]; onSelect: (run: Run) => voi
                       aria-label={`Open ${run.title}`}
                       onClick={() => onSelect(run)}
                     >
-                      <ArrowUpRight size={16} />
+                      <ArrowUpRight size={20} />
                     </button>
                   </td>
                 </tr>
@@ -1087,7 +1109,7 @@ function System({ health }: { health: Health | null }) {
       <section className="panel">
         <div className="panel-heading">
           <h2>
-            <Box size={18} />
+            <Box size={22} />
             Service topology
           </h2>
           <span className="micro">LOCAL MACHINE</span>
@@ -1121,7 +1143,7 @@ function System({ health }: { health: Health | null }) {
           ].map((item) => (
             <div className="architecture-node" key={item.title}>
               <span>
-                <item.icon size={22} />
+                <item.icon size={26} />
               </span>
               <div>
                 <h3>{item.title}</h3>
@@ -1135,7 +1157,7 @@ function System({ health }: { health: Health | null }) {
       <section className="panel system-details">
         <div className="panel-heading">
           <h2>
-            <LockKeyhole size={18} />
+            <LockKeyhole size={22} />
             Execution boundaries
           </h2>
         </div>
@@ -1164,7 +1186,7 @@ function System({ health }: { health: Health | null }) {
       <section className="panel capability-panel">
         <div className="panel-heading">
           <h2>
-            <Code2 size={18} />
+            <Code2 size={22} />
             Registered deterministic solvers
           </h2>
           <span className="micro">
@@ -1174,7 +1196,7 @@ function System({ health }: { health: Health | null }) {
         <div className="capabilities">
           {health?.capabilities.map((capability) => (
             <span key={capability}>
-              <Check size={12} />
+              <Check size={16} />
               {capability.replaceAll('_', ' ')}
             </span>
           )) || <p className="muted">Start the backend to inspect its actual solver registry.</p>}
@@ -1183,7 +1205,7 @@ function System({ health }: { health: Health | null }) {
       <section className="panel getting-started">
         <div className="panel-heading">
           <h2>
-            <BookOpen size={18} />
+            <BookOpen size={22} />
             Local model setup
           </h2>
         </div>

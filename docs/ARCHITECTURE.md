@@ -29,7 +29,7 @@ The practical classes in the proposal are mapped to cohesive modules rather than
 ## State transitions
 
 - Submission: `queued`.
-- Mode A: `running` → interpret → validate → execute → verify → optional review → `computed`, `verified`, or `rejected`.
+- Mode A: `running` → interpret → validate → execute → verify → optional review → `computed`, `verified`, `needs_review`, or `rejected`. Missing challenge data or two invalid interpretation attempts produce `needs_input` with specific questions.
 - Mode B: `running` → plan/policy → optional `awaiting_approval` → execute → observe → replan → `evidence_verified` or `needs_input`.
 - Any running path can end `failed` or `stopped`.
 - After a process restart, previously running/awaiting runs become `stopped` with an interruption explanation. They never execute automatically.
@@ -61,4 +61,10 @@ For a new network tool, require explicit operator-controlled origin configuratio
 
 ## Design system
 
-Color and layout tokens live at the top of `frontend/src/styles.css`. Acid green marks primary actions and successful computational checks; amber marks approvals/unavailable model review; red marks failures; cyan marks active execution. Labels accompany colors. The SVG graph is generated from actual CTF-IR, with only actual returned paths highlighted. Orbital artwork is decorative and has no implied telemetry. Motion respects reduced-motion preferences. All exports are generated locally from real API data.
+The base layout lives in `frontend/src/styles.css`; the operator workbench theme is in `cyberpunk.css`. Monospace body text, condensed headings, red panel outlines, yellow actions, and cyan interaction states follow the user's game-menu reference. Input and execution sit side by side on desktop and stack on phones. Native CSS SVG cursors provide a cyan arrow and yellow targeting reticle without tracking JavaScript; text fields retain the text cursor. Motion respects reduced-motion preferences. Graphs and exports use actual engine data.
+
+## Local model contract
+
+`GemmaClient` in `gemma.cpp` owns persisted endpoint settings, health/model discovery, role schemas, and cancelable inference. Analyst JSON is constrained at both the outer and nested pipeline envelopes; C++ still validates all values. One schema repair is permitted. A model-provided missing-input response never causes execution. Reviewer output must cover both input fidelity and answer relevance. For textual answers, its stated answer must exactly match C++ output before receiving a positive verdict. This catches attempted model corrections, but semantic model review remains fallible and distinct from deterministic proof.
+
+Pipelines contain one to eight non-nested specs. `$previous` resolves only against the previous step's actual text. Verification reconstructs every dependent input, independently checks each result, compares the saved check record, and confirms that the exposed final answer equals the final step. Binary intermediates require an explicit supported representation; they are never silently converted to text.

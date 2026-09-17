@@ -38,6 +38,9 @@ export interface Spec {
 }
 /** Durable execution snapshot returned by both REST and WebSocket. */
 export interface Run {
+  missing_information?: string[]; // Specific clarification questions returned by the interpreter.
+  solution?: { answer: JsonObject; explanation: string; question_crosschecked: boolean }; // Final explanation grounded in the engine result.
+  request?: { title?: string; question?: string; spec?: Spec; actions?: Action[]; mode?: string }; // Original input for an editable retry.
   id: string; // Server-generated immutable run identifier.
   title: string; // Operator-facing challenge title.
   question: string; // Untrusted natural-language statement.
@@ -59,6 +62,8 @@ export interface Run {
     answers_question?: boolean;
     confidence?: number;
     reason?: string;
+    input_matches_question?: boolean;
+    explanation?: string;
   }; // Separate model assessment.
   spec?: Spec; // Accepted CTF-IR used by the solver.
   pending_action?: Action; // Exact proposal awaiting one-shot approval.
@@ -66,10 +71,27 @@ export interface Run {
 }
 /** Real dependency health, queried from the C++ service. */
 export interface Health {
+  model?: ModelStatus; // Detailed local inference diagnostics, separate from API health.
   status: string;
   model_available: boolean;
   lab_origin: string;
   capabilities: string[];
+}
+/** Non-secret, operator-controlled llama.cpp connection configuration. */
+export interface ModelConfig {
+  base_url: string; // Loopback server root, normalized by C++.
+  model: string; // Exact discovered model ID; empty selects the server's first model.
+  timeout_seconds: number; // Total inference deadline, including long CPU generation.
+  max_tokens: number; // Bound for structured output generation.
+}
+/** Connection readiness does not imply a successful generation test. */
+export interface ModelStatus {
+  available: boolean; // Whether the service is ready to accept inference requests.
+  state: string; // ready, offline, loading, unauthorized, wrong_endpoint, or model_missing.
+  message: string; // Actionable diagnostic from the actual transport response.
+  config: ModelConfig; // Persisted public configuration.
+  models: string[]; // Exact names returned by /v1/models.
+  selected_model: string; // Effective auto-discovered or explicit model ID.
 }
 /** Library entries are editable example inputs, never simulated execution results. */
 export interface Example {

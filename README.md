@@ -1,6 +1,6 @@
 # R0WD0GG
 
-A local CTF operations application implementing the proposal's **React → Crow/C++20 → CTF-IR → deterministic solvers / policy-gated agent → verification** architecture. The cyberpunk console uses a charcoal and acid-green design, responsive topology visualization, live traces, an evidence vault, and explicit verification states.
+A local CTF operations application implementing the proposal's **React → Crow/C++20 → CTF-IR → deterministic solvers / policy-gated agent → verification** architecture. The cyberpunk console uses dark maroon panels, yellow identity, cyan controls, subtle scanlines, reduced-motion support, responsive topology visualization, live traces, an evidence vault, and explicit verification states.
 
 ## Start on this Windows workstation
 
@@ -8,18 +8,21 @@ The build artifacts are in `build/` and `frontend/dist/` after successful setup.
 
 ```powershell
 cd D:\ctf_sample
+./scripts/start-llama.ps1
 ./scripts/start.ps1 -WithLab
 # Open http://127.0.0.1:8080
 ./scripts/stop.ps1
+./scripts/stop-llama.ps1
 ```
 
 For React development on the proposal's frontend port, use `./scripts/start.ps1 -WithLab -Dev`, then open **http://127.0.0.1:3000**. It proxies REST and WebSocket traffic to Crow on port 8080. Launch scripts hide service windows and write logs under `tmp/`.
 
-1. Click **Run challenge** for a real shortest-path computation, or open **Challenge lab**.
+1. Paste the complete problem into **CTF problem statement**, then choose **Interpret & solve**. Gemma extracts CTF-IR, C++ computes/checks the result, and Gemma cross-checks the original question, extracted inputs, and answer. **System → Model connection** shows diagnostics and an inference test. For a model-free example, click **Run challenge** or open **Challenge lab**.
 2. **New operation** accepts a description, `.txt` / `.json` import, CTF-IR, or an action plan.
 3. The bundled **Hidden transmission** lab exercises HTTP → Base64 → evidence-backed flag verification.
 4. Select **Manual** in the agent editor to approve each proposed action, or use **Stop execution**.
 5. Inspect verification, expand raw evidence, reverify a stored result, or export a JSON report.
+6. Missing information and review mismatches offer **Edit challenge & retry**; each retry preserves the original audit record.
 
 Example inputs are labelled. No fake execution history, model responses, performance figures, or verification outcomes are shipped in the production data directory.
 
@@ -43,15 +46,19 @@ The built React frontend is also served directly by Crow at `/`, eliminating a d
 
 ## Local Gemma
 
-Model weights and llama.cpp are **not bundled**. Use a compatible Gemma GGUF model and a llama.cpp build supporting that model:
+Model weights and llama.cpp are **not committed to Git**. On this workstation, the winget llama.cpp installation is discovered automatically and Gemma 4 E2B Q4_0 has been downloaded into `models/gemma-4-E2B-it-Q4_0.gguf`. Start it with `./scripts/start-llama.ps1`. The script runs the server hidden, binds port 8081, and saves logs to `tmp/llama-error.log`. Other installations can supply `-ServerPath` and `-ModelPath`.
+
+Downloaded source: [ggml-org/Gemma 4 E2B GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/tree/b4243c1), revision `b4243c1`, 2,841,481,184 bytes. SHA-256 verified: `8e30dff3ac4c8434c49a7036fa15564bdbb6044e42bf04550bf1a096ad7e6a52`.
+
+Equivalent command:
 
 ```text
 llama-server -m /absolute/path/to/gemma.gguf --host 127.0.0.1 --port 8081 -c 8192
 ```
 
-The C++ adapter uses `/health` and `/v1/chat/completions`, with JSON output requested and all responses subsequently validated in C++. It implements analyst, planner, and semantic-review roles. See the official [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md) and [Crow WebSocket documentation](https://crowcpp.org/master/guides/websockets/) for the underlying transport interfaces.
+The C++ adapter uses `/health`, `/v1/models`, and `/v1/chat/completions`. It discovers the actual model ID and requests role-specific schema-constrained JSON with thinking disabled. C++ validates responses, attempts one bounded schema repair, and reports missing inputs without inventing data. Endpoint, model ID, timeout, and token budget are editable under **System** and saved to `data/model.json`. Loading, authentication, transport, truncated responses, and invalid JSON have distinct diagnostics. See the official [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md).
 
-Structured CTF-IR and explicit action plans do not require a model. Without Gemma, a correct deterministic result is labelled **Checks passed**, not semantically verified. Natural-language runs produce an actionable error when inference is unavailable. Actual Gemma inference quality depends on the installed model and has not been evaluated by the mock adapter tests.
+Structured CTF-IR and explicit action plans do not require a model. Without Gemma, a correct deterministic result is labelled **Checks passed**. Natural-language runs require the model; a failed or negative semantic review never confers verified status. `python scripts/test_gemma.py` exercises real inference and saves complete responses to `tmp/gemma-report.json`; mock contract tests are separate.
 
 ## Implemented functionality
 
@@ -65,6 +72,7 @@ Structured CTF-IR and explicit action plans do not require a model. Without Gemm
 | Graph             | BFS, DFS reachability, Dijkstra, Bellman–Ford, Floyd–Warshall, Kruskal MST, topological sort, Kosaraju SCC                                                                                |
 | Algorithms        | 0/1 knapsack dynamic programming, union-find, heaps, queues, adjacency lists                                                                                                              |
 | Encoding          | Strict Base64, hex, repeating-key XOR, ROT13, Caesar, digest-shape identification                                                                                                         |
+| Multi-stage       | Up to eight non-nested CTF-IR steps; `$previous` carries verified text between decoding operations; intermediate results and checks remain inspectable                                    |
 | Network / systems | IPv4 CIDR including /0, /31, /32; Unix permissions with SUID/SGID/sticky bits; observed HTTP header analysis                                                                              |
 | Tools             | HTTP_GET, BASE64_DECODE, HEX_DECODE, CIDR_CALCULATE, PERMISSION_ANALYZE, VERIFY_FLAG                                                                                                      |
 | Tests             | Solver/policy unit tests, independent-oracle graph tests, real API integration, mock model contracts, restart recovery, browser workflow tests, 100 synthetic labelled benchmark fixtures |
@@ -91,6 +99,8 @@ All mutations require `Content-Type: application/json`. Use `id` from challenge 
 | Method     | Route                         | Purpose                                                    |
 | ---------- | ----------------------------- | ---------------------------------------------------------- |
 | GET        | `/api/v1/health`              | Actual model health and solver registry                    |
+| GET / POST | `/api/v1/model`              | Diagnose or save local model connection settings           |
+| POST       | `/api/v1/model/test`          | Perform actual schema-constrained diagnostic inference     |
 | GET / POST | `/api/v1/challenges`          | List summaries / persist a challenge                       |
 | POST       | `/api/v1/solve`               | Start a queued Mode A challenge: `{ "id": "..." }`         |
 | POST       | `/api/v1/agent/start`         | Start a queued Mode B challenge                            |
@@ -102,7 +112,7 @@ All mutations require `Content-Type: application/json`. Use `id` from challenge 
 | POST       | `/api/v1/verify`              | Recheck a stored deterministic result                      |
 | WS         | `/api/v1/live`                | Send `{ "id": "..." }` to receive an atomic state snapshot |
 
-The browser requests bounded live snapshots over WebSocket; it falls back to REST if the connection fails. Four runs may execute concurrently. At most 1000 persisted runs are admitted. Stop is cooperative; lab calls have a five-second read timeout and model calls a sixty-second read timeout. The runtime does not execute shell commands. Only trusted local users should have write access to the data directory.
+The browser requests bounded live snapshots over WebSocket; it falls back to REST if the connection fails. Four runs may execute concurrently. At most 1000 persisted runs are admitted. Stop is cooperative; lab calls have a five-second read timeout. Model calls have a configurable total deadline (default 180 seconds); cancellation interrupts their HTTP socket. The runtime does not execute shell commands. Only trusted local users should have write access to the data directory.
 
 Configuration is operator-controlled through environment variables:
 
@@ -111,7 +121,7 @@ Configuration is operator-controlled through environment variables:
 
 ## Tests and benchmark
 
-Stop running application services before the isolated API integration suite; it requires ports 8080, 8081, and 8090 to be free.
+Stop running application services before the isolated API integration suite; it requires ports 8080, 8082, and 8090 to be free. The real model on port 8081 can stay running.
 
 ```powershell
 ctest --test-dir build --output-on-failure
@@ -122,19 +132,22 @@ python scripts/generate_dataset.py
 
 The checked-in 100-fixture dataset is explicitly **synthetic regression data**. It uses Python Bellman–Ford, `base64`, `ipaddress`, and `stat.filemode` as independent labels. The C++ benchmark checks expected fields, verification acceptance, and rejection of deliberately altered results. It makes no claim about natural-language interpretation accuracy or real-world CTF success rates.
 
-Integration tests run real Crow and tool processes in an isolated temporary data directory. The llama.cpp adapter is tested using a short-lived local mock on port 8081; it is stopped at test completion and is never installed as the user's model service.
+Integration tests run real Crow and tool processes in an isolated temporary data directory. The llama.cpp adapter is tested using a short-lived local mock on port 8082; it is stopped at test completion and is never installed as the user's model service.
 
 Browser checks: start the app and fixture, then run `node scripts/test_frontend.cjs` with `PLAYWRIGHT_MODULE` pointing to an installed Playwright package, or install Playwright in the frontend. `ROWDOGG_BROWSER=chrome` uses installed Chrome; without that variable, install Playwright Chromium. Screenshots and reports are saved under `tmp/`.
 
 ## Developer map
 
 - `backend/src/solvers.cpp`: validation, deterministic solver registry, independent checks.
-- `backend/src/engine.cpp`: Gemma client, policy engine, controlled tools, state/evidence orchestration.
+- `backend/src/engine.cpp`: policy engine, controlled tools, state/evidence orchestration.
+- `backend/src/gemma.cpp`: model settings, diagnosis, schema-constrained inference, cancellation, and role prompts.
 - `backend/src/main.cpp`: transport only: Crow routes, JSON errors, WebSocket and built frontend.
 - `frontend/src/App.tsx`: actual API state and application views.
+- `frontend/src/ProblemComposer.tsx`: pasted-question intake and live pipeline progress.
+- `frontend/src/ModelConnection.tsx`: saved connection settings, discovery, and inference test.
 - `frontend/src/components.tsx`: graph, verification, result, and challenge-editor components.
 - `frontend/src/examples.ts`: editable challenge inputs, never mock results.
-- `frontend/src/styles.css`: commented design tokens and responsive design system.
+- `frontend/src/styles.css` and `cyberpunk.css`: responsive layout, reference-inspired palette, and restrained motion.
 - `schemas/`: machine-readable wire contracts; C++ performs additional semantic validation.
 - `docs/ARCHITECTURE.md`: trust boundaries, states, and extension checklist.
 

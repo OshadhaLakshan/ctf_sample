@@ -28,6 +28,7 @@ export function statusLabel(status: string): string {
         evidence_verified: 'Evidence verified',
         awaiting_approval: 'Awaiting approval',
         needs_input: 'Needs input',
+        needs_review: 'Needs review',
         running: 'Running',
         failed: 'Failed',
         rejected: 'Rejected',
@@ -107,7 +108,8 @@ export function Graph({ spec, path = [] }: { spec: Spec; path?: number[] }) {
           <g key={index} className={path.includes(index) ? 'node active' : 'node'}>
             <circle cx={node.x} cy={node.y} r="18" />
             <text x={node.x} y={node.y + 5}>
-              {String.fromCharCode(65 + index)}
+              {(spec.input.labels as string[] | undefined)?.[index] ||
+                String.fromCharCode(65 + index)}
             </text>
           </g>
         ))}
@@ -187,7 +189,7 @@ export function VerificationPanel({ run, onVerify }: { run: Run | null; onVerify
     <section className="panel verification-panel">
       <div className="panel-heading">
         <h2>
-          <ShieldCheck size={17} />
+          <ShieldCheck size={21} />
           Verification
         </h2>
         <span className="micro">INDEPENDENT ENGINE</span>
@@ -212,7 +214,7 @@ export function VerificationPanel({ run, onVerify }: { run: Run | null; onVerify
           ? verification.checks.map((check) => (
               <div key={check.name}>
                 <span className={check.passed ? 'check-icon' : 'failed-icon'}>
-                  {check.passed ? <Check size={14} /> : <X size={14} />}
+                  {check.passed ? <Check size={18} /> : <X size={18} />}
                 </span>
                 <span>{check.name.replaceAll('_', ' ')}</span>
                 <span className={check.passed ? 'pass' : 'fail'}>
@@ -229,7 +231,7 @@ export function VerificationPanel({ run, onVerify }: { run: Run | null; onVerify
               <div key={label}>
                 <span className="check-pending">0{index + 1}</span>
                 <span>{label}</span>
-                <Circle size={10} className="muted" />
+                <Circle size={14} className="muted" />
               </div>
             ))}
       </div>
@@ -237,11 +239,14 @@ export function VerificationPanel({ run, onVerify }: { run: Run | null; onVerify
         <span className="micro">GEMMA SEMANTIC REVIEW</span>
         <p>
           {run?.semantic_review.status === 'completed'
-            ? run.semantic_review.answers_question
+            ? run.semantic_review.answers_question && run.semantic_review.input_matches_question
               ? 'Result answers the original question.'
               : 'Result needs semantic review.'
             : run?.semantic_review.reason || 'Runs after deterministic checks pass.'}
         </p>
+        {run?.semantic_review.status === 'completed' && (
+          <p className="review-reason">{run.semantic_review.reason}</p>
+        )}
         {run?.semantic_review.confidence !== undefined && (
           <span className="micro">
             MODEL CONFIDENCE · {Math.round(run.semantic_review.confidence * 100)}%{' '}
@@ -257,7 +262,7 @@ export function VerificationPanel({ run, onVerify }: { run: Run | null; onVerify
         </span>
         {run?.spec && run.result && (
           <button className="text-button" onClick={onVerify}>
-            Re-verify <ArrowUpRight size={14} />
+            Re-verify <ArrowUpRight size={18} />
           </button>
         )}
       </div>
@@ -273,13 +278,19 @@ export function Result({ run, notify }: { run: Run; notify: (message: string) =>
     result.flag ??
     result.text ??
     (result.path
-      ? (result.path as number[]).map((node) => String.fromCharCode(65 + node)).join(' → ')
+      ? (result.path as number[])
+          .map(
+            (node) =>
+              (run.spec?.input.labels as string[] | undefined)?.[node] ||
+              String.fromCharCode(65 + node),
+          )
+          .join(' → ')
       : (result.network ?? result.symbolic ?? null)); // Prefer compact human-readable output.
   /** Copies the exact answer, reporting clipboard permission failures. */
   async function copy() {
     try {
       await navigator.clipboard.writeText(
-        answer ? String(answer) : JSON.stringify(result, null, 2),
+        answer !== null ? String(answer) : JSON.stringify(result, null, 2),
       );
       notify('Result copied to clipboard.');
     } catch {
@@ -290,11 +301,11 @@ export function Result({ run, notify }: { run: Run; notify: (message: string) =>
     <div className="result-box">
       <div className="result-heading">
         <span className="micro">
-          <CheckCheck size={15} />
+          <CheckCheck size={19} />
           EXECUTION RESULT
         </span>
         <button className="icon-button" onClick={copy} aria-label="Copy result">
-          <Copy size={15} />
+          <Copy size={19} />
         </button>
       </div>
       {answer !== null && <div className="answer">{String(answer)}</div>}
@@ -309,11 +320,27 @@ export function Result({ run, notify }: { run: Run; notify: (message: string) =>
         </p>
       )}
       {answer === null && <pre>{JSON.stringify(result, null, 2)}</pre>}
+      {run.solution && (
+        <div className="solution-explanation">
+          <strong>
+            {run.solution.question_crosschecked
+              ? 'Question cross-check passed'
+              : 'Question cross-check incomplete'}
+          </strong>
+          <p>{run.solution.explanation}</p>
+        </div>
+      )}
+      {answer !== null && (
+        <details className="full-result">
+          <summary>Full result & intermediate steps</summary>
+          <pre>{JSON.stringify(result, null, 2)}</pre>
+        </details>
+      )}
       <button
         className="text-button"
         onClick={() => downloadJson(`rowdogg-${run.id.slice(0, 8)}.json`, run)}
       >
-        Export full report <ArrowDownToLine size={14} />
+        Export full report <ArrowDownToLine size={18} />
       </button>
     </div>
   );
@@ -335,8 +362,12 @@ export function ChallengeModal({
   const [title, setTitle] = useState(initial.title); // Human-readable operation title.
   const [question, setQuestion] = useState(initial.description); // Challenge statement, treated as data.
   const [mode, setMode] = useState(initial.actions ? 'agent' : 'solver'); // Pipeline selection.
-  const [inputMode, setInputMode] = useState('structured'); // Model-free structured input or Gemma interpretation.
-  const [content, setContent] = useState(JSON.stringify(initial.spec || initial.actions, null, 2)); // Editable JSON source.
+  const [inputMode, setInputMode] = useState(
+    initial.spec || initial.actions ? 'structured' : 'natural',
+  ); // Model-free structured input or Gemma interpretation.
+  const [content, setContent] = useState(
+    JSON.stringify(initial.spec || initial.actions || {}, null, 2),
+  ); // Editable JSON source.
   const [approval, setApproval] = useState('assisted'); // Action approval policy.
   const [steps, setSteps] = useState(12); // Hard agent action limit.
   const [error, setError] = useState(''); // Local parse/upload/submit error.
@@ -453,7 +484,7 @@ export function ChallengeModal({
             disabled={busy}
             aria-label="Close challenge editor"
           >
-            <X size={20} />
+            <X size={24} />
           </button>
         </div>
         <form onSubmit={submit}>
@@ -470,6 +501,7 @@ export function ChallengeModal({
             <label>
               LOAD EXAMPLE
               <select value={example.id} onChange={(event) => choose(event.target.value)}>
+                {example.id === 'custom' && <option value="custom">Custom challenge</option>}
                 {examples.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.title} / {item.tag}
@@ -487,7 +519,7 @@ export function ChallengeModal({
                 setInputMode('natural');
               }}
             >
-              <FileJson size={18} />
+              <FileJson size={22} />
               <span>
                 Deterministic solver<small>MODE A / COMPUTE + VERIFY</small>
               </span>
@@ -500,7 +532,7 @@ export function ChallengeModal({
                 setInputMode('natural');
               }}
             >
-              <Play size={18} />
+              <Play size={22} />
               <span>
                 Interactive agent<small>MODE B / PLAN + EXECUTE</small>
               </span>
@@ -534,7 +566,7 @@ export function ChallengeModal({
               </button>
             </div>
             <button type="button" className="text-button" onClick={() => upload.current?.click()}>
-              <Upload size={14} />
+              <Upload size={18} />
               Import .txt / .json
             </button>
             <input
@@ -595,13 +627,13 @@ export function ChallengeModal({
           )}
           <div className="modal-footer">
             <span>
-              <ShieldCheck size={15} />
+              <ShieldCheck size={19} />
               Validated by the C++ policy engine
             </span>
             <button className="primary" disabled={busy} type="submit">
-              {busy ? <LoaderCircle className="spin" size={16} /> : <Play size={15} />}{' '}
+              {busy ? <LoaderCircle className="spin" size={20} /> : <Play size={19} />}{' '}
               {busy ? 'Initializing…' : 'Launch operation'}
-              <ChevronRight size={16} />
+              <ChevronRight size={20} />
             </button>
           </div>
         </form>
