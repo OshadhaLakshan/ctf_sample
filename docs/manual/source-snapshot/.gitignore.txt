@@ -1,0 +1,11 @@
+build/
+build-next/
+models/
+data/model.json
+frontend/node_modules/
+frontend/dist/
+data/runs/
+tmp/
+*.log
+__pycache__/
+*.tsbuildinfo

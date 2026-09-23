@@ -1,0 +1,272 @@
+{
+  "snapshot_date": "2026-09-22",
+  "application_version": "0.1.0",
+  "coverage_definition": "Every physical line of each explicitly included maintained source/config/test/style/asset/document file. Notes are syntax-level reading aids plus preserved developer comments, not a formal proof or independently reviewed semantic assertion for every line.",
+  "file_count": 42,
+  "line_count": 10501,
+  "annotated_line_count": 10501,
+  "files": [
+    {
+      "path": ".clang-format",
+      "lines": 7,
+      "bytes": 196,
+      "sha256": "b179987624594587fd115ba24eb8f1f3522ed96f4ef00c19fb7f42ba782dc8c4"
+    },
+    {
+      "path": ".gitignore",
+      "lines": 11,
+      "bytes": 130,
+      "sha256": "d92b3462932b9d2ebf7e6cc2218f4296a097a0ceb0eeda1b2d9a42d049f4c5a7"
+    },
+    {
+      "path": ".prettierrc.json",
+      "lines": 6,
+      "bytes": 90,
+      "sha256": "261cc43cedb9d40a13a6cd4db062569630d5ec2d37f27c41cc739bbdbdaea50f"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "lines": 41,
+      "bytes": 2399,
+      "sha256": "cfb41a783aa97a18a8b9f05eb21432861fd210e3b05e6abe33ea0e45985801ec"
+    },
+    {
+      "path": "README.md",
+      "lines": 156,
+      "bytes": 15458,
+      "sha256": "2958aff688a7a76aa2710c9da4cedef06083399ba3f7d7c10fb39c38b8e9a841"
+    },
+    {
+      "path": "backend/include/engine.hpp",
+      "lines": 105,
+      "bytes": 5256,
+      "sha256": "b8c02ea8b7464080bea63faf65b1e3953f326dfbc323ecc692e020a0f42491fc"
+    },
+    {
+      "path": "backend/include/solvers.hpp",
+      "lines": 24,
+      "bytes": 968,
+      "sha256": "06e16c95bbfa7c1ac59595cdcd0d737977eb2a616cd5c87e9d7111a55b9af691"
+    },
+    {
+      "path": "backend/src/engine.cpp",
+      "lines": 736,
+      "bytes": 39076,
+      "sha256": "9decb1c17e0b75ef9d47fdcebd83a7a1fb54dbcb749ae69e5b8826d695c15658"
+    },
+    {
+      "path": "backend/src/gemma.cpp",
+      "lines": 434,
+      "bytes": 29876,
+      "sha256": "5ac078d4fa17e6e6184f178be05449f3136df26c1145b999c21a1e3d2c19162b"
+    },
+    {
+      "path": "backend/src/main.cpp",
+      "lines": 169,
+      "bytes": 8547,
+      "sha256": "f4c779e54e9185c7fbe4aeafe17f8ec0c6145f3d6286e0bf953508e055057eda"
+    },
+    {
+      "path": "backend/src/solvers.cpp",
+      "lines": 821,
+      "bytes": 41630,
+      "sha256": "660fb5aaaa39bf04f5646d32a2f20d2b115fc676c1d926965a97f0bcff709836"
+    },
+    {
+      "path": "backend/tests/benchmark.cpp",
+      "lines": 48,
+      "bytes": 2436,
+      "sha256": "20b4c4550be65be44d7f029876ca056af972d850a711de9c3df07b8d42ada63f"
+    },
+    {
+      "path": "backend/tests/engine_tests.cpp",
+      "lines": 220,
+      "bytes": 11782,
+      "sha256": "608e5b47f84f1dc28a1c89524ed9679195ed09f82d928e9c17ed8a8e5d5ccb93"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "lines": 70,
+      "bytes": 6910,
+      "sha256": "9f646010b30ee23da5ba75c258e82fabea6ffdbd2d5adcde33cfde5716fbaabb"
+    },
+    {
+      "path": "frontend/index.html",
+      "lines": 2,
+      "bytes": 472,
+      "sha256": "11625ce4060652c753f6fb384f1424a8fe436b880e0413d4cbe921dad68c97ad"
+    },
+    {
+      "path": "frontend/package.json",
+      "lines": 26,
+      "bytes": 654,
+      "sha256": "a5da86c63ce562eae8ca17c0d7ea7b5ca70873ad7eac05ec6b648edc039618c0"
+    },
+    {
+      "path": "frontend/public/cursor-target.svg",
+      "lines": 1,
+      "bytes": 235,
+      "sha256": "c6050b833aceb44e66e2e95961fe194af037a3463ea4b4b54617dd2d5c7c50e1"
+    },
+    {
+      "path": "frontend/public/cursor.svg",
+      "lines": 1,
+      "bytes": 237,
+      "sha256": "28d7e78fe79ad2cad60bb7068201efca836d886249e0f761ddf62d04ba8a73bd"
+    },
+    {
+      "path": "frontend/public/favicon.svg",
+      "lines": 1,
+      "bytes": 202,
+      "sha256": "38588c8d2bedb13fd8038fa1620b342142ce873edadb9848d3ab3057e70aabaf"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "lines": 1227,
+      "bytes": 48419,
+      "sha256": "e4a70bf96b2358953305d8e5304874100b294085506863429399cb9880d8055d"
+    },
+    {
+      "path": "frontend/src/ModelConnection.tsx",
+      "lines": 247,
+      "bytes": 8520,
+      "sha256": "8756c4e95eb487c56d0665b64c620b07970cee7e66697572088e15d4b6ac5394"
+    },
+    {
+      "path": "frontend/src/ProblemComposer.tsx",
+      "lines": 210,
+      "bytes": 7292,
+      "sha256": "2f229f39c6603c884c03174e4a9248331be8b361968b2e88f135a9a5e9d8ac9b"
+    },
+    {
+      "path": "frontend/src/api.ts",
+      "lines": 32,
+      "bytes": 1678,
+      "sha256": "8e8fca53d2ceeb103e2be7465548ad8f6896b5675d3bfd5086517fce13f2d24e"
+    },
+    {
+      "path": "frontend/src/components.tsx",
+      "lines": 643,
+      "bytes": 23100,
+      "sha256": "ee4c9a4b6a4ccc4985de7d1ca48a359fb7ea98c94a6418075acc96c02abbfc28"
+    },
+    {
+      "path": "frontend/src/cyberpunk.css",
+      "lines": 1186,
+      "bytes": 21663,
+      "sha256": "44cd8d540104ef04bfbade3218196d8b773c5f2f37d3c6520607d2d686314ade"
+    },
+    {
+      "path": "frontend/src/examples.ts",
+      "lines": 122,
+      "bytes": 3341,
+      "sha256": "68376c3bb1c6d4fc1fa46b113b09173722009668edd9567c1fa81a3c5cb7ba44"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "lines": 12,
+      "bytes": 328,
+      "sha256": "c2725827b241aab04a37af78239d65e855ba1ee454ed05e285636dde23b649b0"
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "lines": 3128,
+      "bytes": 54205,
+      "sha256": "ebb68c3b0379f08bd68f7c55ffd931a7468f75d6c3423cae117fad72400d26ae"
+    },
+    {
+      "path": "frontend/src/types.ts",
+      "lines": 105,
+      "bytes": 4438,
+      "sha256": "ff8e94578a9b06dd13b4fb6c55036bf3109d02e06c219ae37d3913b09c53b8c9"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "lines": 17,
+      "bytes": 408,
+      "sha256": "073d540e5cbb79b62d8709aa1ba04fd8f8a2a69e78965c8602ce4e18c1e4ef24"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "lines": 8,
+      "bytes": 312,
+      "sha256": "6053d7b28191df5873f6942e6bcf3b84a5f414999c4073682f5e0365f62fa45e"
+    },
+    {
+      "path": "schemas/action.schema.json",
+      "lines": 25,
+      "bytes": 662,
+      "sha256": "2d798483406c8f0eb059beb7a3407deea6b5fb0f2a91fccc3fa1d013882ac516"
+    },
+    {
+      "path": "schemas/ctf-ir.schema.json",
+      "lines": 51,
+      "bytes": 1453,
+      "sha256": "9589c6270e35e9e564cc9c551ce53cb0dba051143b83a8b37ca471ac6681fe8c"
+    },
+    {
+      "path": "scripts/generate_dataset.py",
+      "lines": 56,
+      "bytes": 3999,
+      "sha256": "fecc70d4b230804e86cb947ee19c9e9762718f806065f8a880d8be81421eee9c"
+    },
+    {
+      "path": "scripts/lab_fixture.py",
+      "lines": 52,
+      "bytes": 2215,
+      "sha256": "e933366fcdd3281f5c00c7dc344ac6f51b505b56c2df2351fa4cce9510573065"
+    },
+    {
+      "path": "scripts/start-llama.ps1",
+      "lines": 35,
+      "bytes": 2817,
+      "sha256": "30f35e237d77b87babfa6c79207920c58f069cb149c040d3966219bc5d3d0cdd"
+    },
+    {
+      "path": "scripts/start.ps1",
+      "lines": 43,
+      "bytes": 3157,
+      "sha256": "d7a7e574bdb41c927039a8f98b39beeefb294910805d0d8129062f9554456bf6"
+    },
+    {
+      "path": "scripts/stop-llama.ps1",
+      "lines": 9,
+      "bytes": 821,
+      "sha256": "16537e6f00f686c4e5bc5e187e3c430426686c2c0f69ffe1ba030525923ce502"
+    },
+    {
+      "path": "scripts/stop.ps1",
+      "lines": 15,
+      "bytes": 1013,
+      "sha256": "b266b13e58cddf8307935ebcc96ce4c12e972e2ae4e3fcac113f8575402c9516"
+    },
+    {
+      "path": "scripts/test_frontend.cjs",
+      "lines": 124,
+      "bytes": 9864,
+      "sha256": "d8186bb412c0f183ef32ed37b6f23ba0976d70e0448dc8b6bcf5b36ef40f5814"
+    },
+    {
+      "path": "scripts/test_gemma.py",
+      "lines": 64,
+      "bytes": 4345,
+      "sha256": "d8fe6bbf4f31024a08875105f2b5be4cdcef395a52bb106e9b42721cf52a9c61"
+    },
+    {
+      "path": "scripts/test_integration.py",
+      "lines": 211,
+      "bytes": 12601,
+      "sha256": "5cd5c1171b4e69f5d5a2e1b3b700e94661e131844f377a5edd45bbb3f2afd23b"
+    }
+  ],
+  "exclusions": {
+    "frontend/package-lock.json, package-lock.json": "Generated dependency resolution trees. Preserve the repository lockfiles for reproducible installation; third-party package internals are not annotated application source.",
+    "package.json at repository root": "Supplemental local Playwright dependency setup; frontend/package.json is the maintained application manifest.",
+    "fix_grid.cjs, scale_icons.cjs, scale_icons2.cjs, scale_styles.cjs, scale_ui.cjs, run_backend_auto.ps1": "Historical one-off editing/launch helpers outside the maintained scripts workflow; not necessary to rebuild the architecture.",
+    "fix_ssrf.py": "Historical policy-changing patch script, excluded from the supported local-only implementation and build instructions.",
+    "data/benchmark.json": "Generated synthetic dataset; its generator and benchmark consumer are included.",
+    "data/model.json, data/runs, tmp reports/logs": "Local configuration and potentially private execution data; not copied into documentation.",
+    "models, node_modules, frontend/node_modules, build, build-next, cmake-build-debug, frontend/dist": "Downloaded weights, third-party dependencies or generated build output.",
+    ".git, .idea, docs/manual, tmp/docs-build": "Version-control/editor internals or documentation deliverables/build helpers rather than application implementation."
+  }
+}
