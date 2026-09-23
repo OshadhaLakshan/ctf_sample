@@ -44,7 +44,9 @@ class LabHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    import os
+    port = int(os.environ.get('ROWDOGG_FIXTURE_PORT', '8090')) # Separate test fixtures from the user's active lab.
     # The fixture never binds to a public network interface.
-    server = ThreadingHTTPServer(("127.0.0.1", 8090), LabHandler)
-    print("Local CTF fixture: http://127.0.0.1:8090/challenge", flush=True)
+    server = ThreadingHTTPServer(("127.0.0.1", port), LabHandler)
+    print(f"Local CTF fixture: http://127.0.0.1:{port}/challenge", flush=True)
     server.serve_forever()

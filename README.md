@@ -9,13 +9,13 @@ The build artifacts are in `build/` and `frontend/dist/` after successful setup.
 ```powershell
 cd D:\ctf_sample
 ./scripts/start-llama.ps1
-./scripts/start.ps1 -WithLab
-# Open http://127.0.0.1:8080
+./scripts/start.ps1 -WithLab -Port 8085
+# Open http://127.0.0.1:8085 (8080 is occupied by Apache on this workstation)
 ./scripts/stop.ps1
 ./scripts/stop-llama.ps1
 ```
 
-For React development on the proposal's frontend port, use `./scripts/start.ps1 -WithLab -Dev`, then open **http://127.0.0.1:3000**. It proxies REST and WebSocket traffic to Crow on port 8080. Launch scripts hide service windows and write logs under `tmp/`.
+For React development, use `./scripts/start.ps1 -WithLab -Dev -Port 8085`, then open **http://127.0.0.1:3000**. It proxies REST and WebSocket traffic to the selected Crow port. The default remains 8080 when `-Port` is omitted; `ROWDOGG_PORT` controls direct backend launches. Launch scripts hide service windows and write logs under `tmp/`.
 
 1. Paste the complete problem into **CTF problem statement**, then choose **Interpret & solve**. Gemma extracts CTF-IR, C++ computes/checks the result, and Gemma cross-checks the original question, extracted inputs, and answer. **System → Model connection** shows diagnostics and an inference test. For a model-free example, click **Run challenge** or open **Challenge lab**.
 2. **New operation** accepts a description, `.txt` / `.json` import, CTF-IR, or an action plan.
@@ -121,11 +121,13 @@ Configuration is operator-controlled through environment variables:
 
 ## Tests and benchmark
 
-Stop running application services before the isolated API integration suite; it requires ports 8080, 8082, and 8090 to be free. The real model on port 8081 can stay running.
+The isolated API integration suite requires ports 8086, 8082, and 8092 to be free. The real app, model, and lab can stay running on their separate ports.
 
 ```powershell
 ctest --test-dir build --output-on-failure
 python scripts/test_integration.py
+$env:ROWDOGG_URL = 'http://127.0.0.1:8085'
+python scripts/test_gemma.py
 ./build/benchmark_runner.exe data/benchmark.json
 python scripts/generate_dataset.py
 ```

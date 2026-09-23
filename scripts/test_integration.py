@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Repository paths and loopback-only API targets are fixed for this integration suite.
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "http://127.0.0.1:8080/api/v1"
+BASE = "http://127.0.0.1:8086/api/v1" # Dedicated test API avoids the running app and Apache.
 OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 SPEC = {"version": "1.0", "category": "graph", "problem": {"type": "shortest_path"}, "input": {"nodes": 3, "edges": [[0, 1, 2], [1, 2, 3], [0, 2, 9]]}, "parameters": {"source": 0, "target": 2}, "output": {"type": "path_and_cost"}}
 ACTIONS = [{"action": "HTTP_GET", "arguments": {"path": "/challenge"}}, {"action": "BASE64_DECODE", "arguments": {"from_previous": True}}, {"action": "VERIFY_FLAG", "arguments": {"from_previous": True}}]
@@ -107,7 +107,7 @@ def main():
     """Launch isolated services, execute assertions, and always stop test-owned processes."""
     # Tests never overwrite user run history and never reuse an unknown process.
     storage = tempfile.mkdtemp(prefix="integration-", dir=ROOT / "tmp")
-    environment = {**os.environ, "ROWDOGG_DATA_DIR": storage, "ROWDOGG_LLAMA_URL": "http://127.0.0.1:8082"} # Keep the real model on 8081 untouched.
+    environment = {**os.environ, "ROWDOGG_DATA_DIR": storage, "ROWDOGG_PORT": "8086", "ROWDOGG_LLAMA_URL": "http://127.0.0.1:8082", "ROWDOGG_LAB_ORIGIN": "http://127.0.0.1:8092", "ROWDOGG_FIXTURE_PORT": "8092"} # Isolated ports leave actual services untouched.
     binary = ROOT / "build" / ("rowdogg.exe" if os.name == "nt" else "rowdogg")
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
     engine = None
@@ -117,11 +117,11 @@ def main():
     try:
         # Refuse occupied ports to avoid testing or terminating somebody else's service.
         import socket
-        for port in (8080, 8082, 8090):
+        for port in (8086, 8082, 8092):
             with socket.socket() as probe:
                 check(probe.connect_ex(("127.0.0.1", port)) != 0, f"Port {port} must be free for isolated integration tests")
         engine = subprocess.Popen([str(binary)], cwd=ROOT, env=environment, stdout=log, stderr=log, creationflags=flags)
-        lab = subprocess.Popen([sys.executable, "scripts/lab_fixture.py"], cwd=ROOT, stdout=log, stderr=log, creationflags=flags)
+        lab = subprocess.Popen([sys.executable, "scripts/lab_fixture.py"], cwd=ROOT, env=environment, stdout=log, stderr=log, creationflags=flags)
         # Wait for the engine to bind before issuing assertions.
         for attempt in range(50):
             try:

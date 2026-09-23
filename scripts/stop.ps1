@@ -5,7 +5,11 @@ $pidFile = Join-Path $projectRoot 'tmp/services.json' # Project-owned service re
 if (-not (Test-Path -LiteralPath $pidFile)) { Write-Output 'No recorded R0WD0GG services.'; exit 0 }
 $records = Get-Content -LiteralPath $pidFile -Raw | ConvertFrom-Json # Saved IDs and expected executable paths.
 foreach ($record in $records) {
-    $process = Get-Process -Id $record.id -ErrorAction SilentlyContinue # Current process, if still alive.
-    if ($process -and $process.Path -eq $record.path) { Stop-Process -Id $record.id; Write-Output "Stopped $($record.name)." }
+    $process = Get-CimInstance Win32_Process -Filter "ProcessId=$($record.id)" -ErrorAction SilentlyContinue # CIM retains the executable path when Get-Process.Path is unavailable.
+    if ($process -and $process.ExecutablePath -eq $record.path) {
+        Stop-Process -Id $record.id -Force
+        Wait-Process -Id $record.id -Timeout 10 -ErrorAction SilentlyContinue
+        Write-Output "Stopped $($record.name)."
+    }
 }
 Remove-Item -LiteralPath $pidFile

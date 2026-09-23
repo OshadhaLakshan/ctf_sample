@@ -4,6 +4,14 @@
 #include <iostream>
 
 namespace {
+// A configurable application port avoids collisions with Apache or other local services.
+int applicationPort() {
+    const char *configured = std::getenv("ROWDOGG_PORT"); // Operator-selected loopback port.
+    const int port = configured ? std::stoi(configured) : 8080;
+    if (port < 1024 || port > 65535 || port == 8081 || port == 8090 || port == 3000)
+        throw std::invalid_argument("Invalid application port");
+    return port;
+}
 // Converts domain exceptions to consistent JSON API errors.
 template <class Function> crow::response respond(Function function) {
     try {
@@ -26,7 +34,11 @@ template <class Function> crow::response respond(Function function) {
 
 // Validates browser origins before mutations and WebSocket upgrades.
 bool localOrigin(const crow::request &request) {
-    return true; // Bypassed origin restriction to fix Origin rejected error.
+    const auto origin = request.get_header_value("Origin"); // Native clients may omit Origin.
+    if (origin.empty()) return true;
+    for (const auto &host : {"http://127.0.0.1:", "http://localhost:"})
+        if (origin == std::string(host) + std::to_string(applicationPort()) || origin == std::string(host) + "3000") return true;
+    return false;
 }
 
 // Rejects oversized or cross-origin mutations before dispatching engine operations.
@@ -150,6 +162,8 @@ int main() {
         response.set_static_file_info("frontend/public/favicon.svg");
         return response;
     });
-    std::cout << "R0WD0GG API listening on http://127.0.0.1:8080\n";
-    app.bindaddr("127.0.0.1").port(8080).concurrency(4).loglevel(crow::LogLevel::Warning).run();
+    CROW_ROUTE(app, "/cursor.svg")([] { crow::response response; response.set_static_file_info("frontend/public/cursor.svg"); return response; });
+    CROW_ROUTE(app, "/cursor-target.svg")([] { crow::response response; response.set_static_file_info("frontend/public/cursor-target.svg"); return response; });
+    std::cout << "R0WD0GG API listening on http://127.0.0.1:" << applicationPort() << '\n';
+    app.bindaddr("127.0.0.1").port(applicationPort()).concurrency(4).loglevel(crow::LogLevel::Warning).run();
 }

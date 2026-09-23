@@ -35,20 +35,8 @@ Json executeTool(const Json &action, const Json &previous) {
             throw std::invalid_argument("Previous evidence has no text output");
     }
     if (tool == "HTTP_GET") {
-        std::string target_origin = PolicyEngine::labOrigin();
-        std::string target_path = "/";
-        if (arguments.contains("url")) {
-            std::string url = arguments.at("url").get<std::string>();
-            size_t path_pos = url.find('/', url.find("://") + 3);
-            if (path_pos != std::string::npos) {
-                target_origin = url.substr(0, path_pos);
-                target_path = url.substr(path_pos);
-            } else {
-                target_origin = url;
-            }
-        } else if (arguments.contains("path")) {
-            target_path = arguments.at("path").get<std::string>();
-        }
+        const std::string target_origin = PolicyEngine::labOrigin(); // The model cannot replace the operator's lab origin.
+        const std::string target_path = arguments.at("path"); // Validated relative path within that lab.
         httplib::Client client(target_origin);
         client.set_connection_timeout(2);
         client.set_read_timeout(5);
@@ -153,7 +141,7 @@ void PolicyEngine::validate(const Json &action) {
     if (arguments.dump().size() > 65536)
         throw std::invalid_argument("Tool arguments exceed 64 KiB");
     const std::set<std::string> allowed =
-        tool == "HTTP_GET"             ? std::set<std::string>{"path", "url", "headers"}
+        tool == "HTTP_GET"             ? std::set<std::string>{"path", "headers"}
         : tool == "CIDR_CALCULATE"     ? std::set<std::string>{"cidr"}
         : tool == "PERMISSION_ANALYZE" ? std::set<std::string>{"mode"}
                                        : std::set<std::string>{"text", "from_previous"};
@@ -161,8 +149,12 @@ void PolicyEngine::validate(const Json &action) {
         if (!allowed.contains(iterator.key()))
             throw std::invalid_argument("Unexpected tool argument: " + iterator.key());
     if (tool == "HTTP_GET") {
-        if (!arguments.contains("path") && !arguments.contains("url"))
-            throw std::invalid_argument("HTTP_GET requires path or url");
+        if (!arguments.contains("path") || !arguments["path"].is_string())
+            throw std::invalid_argument("HTTP_GET requires a relative path");
+        const std::string path = arguments["path"]; // Reject absolute URLs, alternate authorities and control characters.
+        if (path.empty() || path.size() > 2048 || path.front() != '/' || path.starts_with("//") || path.find('\\') != std::string::npos ||
+            std::any_of(path.begin(), path.end(), [](unsigned char character) { return character <= 32 || character == 127; }))
+            throw std::invalid_argument("HTTP_GET path must remain within the configured lab");
         if (arguments.contains("headers")) {
             if (!arguments["headers"].is_object() || arguments["headers"].size() > 16)
                 throw std::invalid_argument("At most 16 headers allowed");

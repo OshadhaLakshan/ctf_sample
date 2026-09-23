@@ -18,6 +18,22 @@ async function main() {
     await page.getByText('SYSTEM ONLINE', { exact: true }).waitFor();
     await page.screenshot({ path: path.join(root, 'tmp', 'desktop-ready.png'), fullPage: true });
     checks.push('Real C++ health and desktop initial rendering');
+    for (const width of [1920, 1440, 1280, 1024]) { // Reproduce the reported overlap at desktop and compact widths.
+      await page.setViewportSize({ width, height: 1000 });
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      assert.ok(await page.evaluate(() => {
+        const intake = document.querySelector('.problem-composer').getBoundingClientRect(); // Input panel including its actions.
+        const output = document.querySelector('.execution-grid').getBoundingClientRect(); // Result and verification panels.
+        const history = document.querySelector('.operator-layout>.table-panel').getBoundingClientRect(); // History must begin after both panels.
+        return history.top >= Math.max(intake.bottom, output.bottom) && document.documentElement.scrollWidth <= innerWidth;
+      }), `Panels must not overlap or overflow at ${width}px`);
+    }
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    for (const asset of ['/cursor.svg', '/cursor-target.svg']) {
+      assert.equal((await page.request.get(new URL(asset, page.url()).href)).status(), 200, 'Cursor asset must be served, not only referenced in CSS');
+    }
+    checks.push('Scrolled desktop layout at four widths and actual cursor asset delivery');
     await page.getByRole('button', { name: 'Run challenge', exact: false }).click();
     await page.getByText('EXECUTION RESULT', { exact: true }).waitFor();
     await page.locator('.answer').filter({ hasText: 'A → C → B → D → E → F' }).waitFor();
